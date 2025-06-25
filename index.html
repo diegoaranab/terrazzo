@@ -375,17 +375,24 @@
                 const col = document.createElement('div');
                 col.className = 'col-md-4';
                 col.innerHTML = `
-      <div class="card menu-card h-100 text-bg-dark">
+      <div class="card menu-card h-100">
         <img src="${ev.img}" class="card-img-top" alt="${ev.title}">
         <div class="card-body">
           <h3 class="h5 card-title">${ev.title}</h3>
-          <p class="small mb-1"><i class="bi bi-calendar-event me-1"></i>${ev.date}</p>
+          <p class="small mb-1">
+            <i class="bi bi-calendar-event me-1"></i>${ev.date}
+          </p>
           <p class="card-text small">${ev.description}</p>
+        </div>
+        <div class="card-footer bg-transparent border-0 text-end">
+          <a href="https://wa.me/522390000000?text=Quiero%20reservar%20para%20${encodeURIComponent(ev.title)}"
+             class="btn btn-cta btn-sm">Reservar&nbsp;ya</a>
         </div>
       </div>`;
                 eventGrid.appendChild(col);
             });
         }
+
 
 
         /* ===== Lightbox ===== */
