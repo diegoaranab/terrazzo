@@ -29,7 +29,7 @@
         "name": "Fat Boy",
         "description": "Carne de res con papas a la francesa, extra queso y tocino crujiente",
         "price": 95,
-        "img": "/terrazzo/assets/fatboy.jpg"
+        "img": "/terrazzo/assets/fatboy.png"
     },
     {
         "id": "choriburger",
@@ -37,7 +37,7 @@
         "name": "Choriburger",
         "description": "Carne de res, abundante chorizo, quesos de la casa y guacamole",
         "price": 95,
-        "img": "/terrazzo/assets/choriburger.jpg"
+        "img": "/terrazzo/assets/choriburger.png"
     },
     {
         "id": "cheestorra-burger",
@@ -45,7 +45,7 @@
         "name": "Cheestorra",
         "description": "Carne de res, chistorra asada, aros de cebolla y guacamole",
         "price": 95,
-        "img": "/terrazzo/assets/cheestorra.jpg"
+        "img": "/terrazzo/assets/cheestorra.png"
     },
     {
         "id": "hawaiana-burger",
@@ -53,7 +53,7 @@
         "name": "Hawaiana",
         "description": "Carne de res, queso, jamón, tocino y piña grillada",
         "price": 95,
-        "img": "/terrazzo/assets/hawaiana.jpg"
+        "img": "/terrazzo/assets/hawaiana.png"
     },
     {
         "id": "terrazzo-burger",
@@ -61,7 +61,7 @@
         "name": "Terrazzo",
         "description": "Arrachera, chistorra y chorizo con quesos fundidos y guacamole",
         "price": 105,
-        "img": "/terrazzo/assets/terrazzo.jpg"
+        "img": "/terrazzo/assets/terrazzo.png"
     },
     {
         "id": "alitas-bbq",
@@ -69,7 +69,7 @@
         "name": "BBQ",
         "description": "Glaseado BBQ ahumado y dulce",
         "price": 105,
-        "img": "/terrazzo/assets/bbq.jpg"
+        "img": "/terrazzo/assets/bbq.png"
     },
     {
         "id": "alitas-ajo-arriero",
@@ -77,7 +77,7 @@
         "name": "Ajo Arriero",
         "description": "Salsa de ajo con ligero toque picoso",
         "price": 105,
-        "img": "/terrazzo/assets/ajo-arriero.jpg"
+        "img": "/terrazzo/assets/ajo-arriero.png"
     },
     {
         "id": "alitas-lemon-pepper",
@@ -85,7 +85,7 @@
         "name": "Lemon Pepper",
         "description": "Secas, cítricas y especiadas con pimienta",
         "price": 105,
-        "img": "/terrazzo/assets/lemon-pepper.jpg"
+        "img": "/terrazzo/assets/lemon-pepper.png"
     },
     {
         "id": "alitas-mango-habanero",
@@ -93,7 +93,7 @@
         "name": "Mango Habanero",
         "description": "Agridulce de mango con picor de habanero",
         "price": 105,
-        "img": "/terrazzo/assets/mango-habanero.jpg"
+        "img": "/terrazzo/assets/mango-habanero.png"
     },
     {
         "id": "alitas-ajo-parmesano",
@@ -101,7 +101,7 @@
         "name": "Ajo Parmesano",
         "description": "Mantequilla de ajo y lluvia de parmesano",
         "price": 105,
-        "img": "/terrazzo/assets/ajo-parmesano.jpg"
+        "img": "/terrazzo/assets/ajo-parmesano.png"
     },
     {
         "id": "alitas-habanero",
@@ -109,7 +109,7 @@
         "name": "Habanero",
         "description": "Salsa habanero intensa y muy picante",
         "price": 105,
-        "img": "/terrazzo/assets/habanero.jpg"
+        "img": "/terrazzo/assets/habanero.png"
     },
     {
         "id": "alitas-buffalo",
@@ -117,7 +117,7 @@
         "name": "Buffalo",
         "description": "Clásica salsa búfalo con mantequilla",
         "price": 105,
-        "img": "/terrazzo/assets/buffalo.jpg"
+        "img": "/terrazzo/assets/buffalo.png"
     },
     {
         "id": "alitas-hot-street",
@@ -125,7 +125,7 @@
         "name": "Hot Street",
         "description": "Receta extra picante estilo callejero",
         "price": 105,
-        "img": "/terrazzo/assets/hot-street.jpg"
+        "img": "/terrazzo/assets/hot-street.png"
     },
     {
         "id": "alitas-chipotle",
@@ -133,7 +133,7 @@
         "name": "Chipotle",
         "description": "Salsa cremosa de chipotle ahumado",
         "price": 105,
-        "img": "/terrazzo/assets/chipotle.jpg"
+        "img": "/terrazzo/assets/chipotle.png"
     },
     {
         "id": "jocho-sencillo",
@@ -141,7 +141,7 @@
         "name": "Jocho Sencillo",
         "description": "Salchicha frita, queso fundido y ensalada tricolor",
         "price": 60,
-        "img": "/terrazzo/assets/sencillo.jpg"
+        "img": "/terrazzo/assets/sencillo.png"
     },
     {
         "id": "jocho-tocino",
@@ -149,7 +149,7 @@
         "name": "Jocho Tocino",
         "description": "Salchicha envuelta en tocino, queso fundido y ensalada tricolor",
         "price": 75,
-        "img": "/terrazzo/assets/tocino.jpg"
+        "img": "/terrazzo/assets/tocino.png"
     },
     {
         "id": "choridog",
@@ -157,7 +157,7 @@
         "name": "Choridog",
         "description": "Chorizo a la parrilla, queso fundido y ensalada tricolor",
         "price": 75,
-        "img": "/terrazzo/assets/choridog.jpg"
+        "img": "/terrazzo/assets/choridog.png"
     },
     {
         "id": "nachos-clasicos",
@@ -165,7 +165,7 @@
         "name": "Nachos Clásicos",
         "description": "Totopos con cheddar, frijoles y ensalada tricolor",
         "price": 70,
-        "img": "/terrazzo/assets/clasicos.jpg"
+        "img": "/terrazzo/assets/clasicos.png"
     },
     {
         "id": "nachos-lujo",
@@ -173,7 +173,7 @@
         "name": "Nachos de Lujo",
         "description": "Totopos con cheddar y proteína (chistorra, chorizo y arrachera)",
         "price": 90,
-        "img": "/terrazzo/assets/lujo.jpg"
+        "img": "/terrazzo/assets/lujo.png"
     },
     {
         "id": "nachos-oro-verde",
@@ -181,7 +181,7 @@
         "name": "Nachos Oro Verde",
         "description": "Totopos con guacamole, proteínas grilladas y ensalada",
         "price": 90,
-        "img": "/terrazzo/assets/oro-verde.jpg"
+        "img": "/terrazzo/assets/oro-verde.png"
     },
     {
         "id": "red-clouding",
@@ -189,7 +189,7 @@
         "name": "Red Clouding",
         "description": "Matusalem, jamaica, jengibre, limón, lavanda bitter y clara de huevo",
         "price": 80,
-        "img": "/terrazzo/assets/red-clouding.jpg"
+        "img": "/terrazzo/assets/red-clouding.png"
     },
     {
         "id": "casper",
@@ -197,7 +197,7 @@
         "name": "Casper",
         "description": "Vodka, jugo de manzana, vainilla syrup y cardamomo",
         "price": 80,
-        "img": "/terrazzo/assets/casper.jpg"
+        "img": "/terrazzo/assets/casper.png"
     },
     {
         "id": "hiroshima",
@@ -205,7 +205,7 @@
         "name": "Hiroshima",
         "description": "Ginebra, Midori, agua de aloe y limón amarillo",
         "price": 80,
-        "img": "/terrazzo/assets/hiroshima.jpg"
+        "img": "/terrazzo/assets/hiroshima.png"
     },
     {
         "id": "terrapop",
@@ -213,7 +213,7 @@
         "name": "Terrapop",
         "description": "Vodka, agua mineral, Sprite, Boost y Tutsi Pop",
         "price": 80,
-        "img": "/terrazzo/assets/terrapop.jpg"
+        "img": "/terrazzo/assets/terrapop.png"
     },
     {
         "id": "flamingo",
@@ -221,7 +221,7 @@
         "name": "Flamingo",
         "description": "Vodka tamarindo, ron de mango, jugos tropicales y granadina",
         "price": 80,
-        "img": "/terrazzo/assets/flamingo.jpg"
+        "img": "/terrazzo/assets/flamingo.png"
     },
     {
         "id": "carino",
@@ -229,7 +229,7 @@
         "name": "Cariño (Erik van Beek)",
         "description": "Matusalem 15, yogurt griego, Chartreuse amarillo y vainilla",
         "price": 80,
-        "img": "/terrazzo/assets/carino.jpg"
+        "img": "/terrazzo/assets/carino.png"
     },
     {
         "id": "naked-and-famous",
@@ -237,7 +237,7 @@
         "name": "Naked and Famous",
         "description": "Mezcal, Chartreuse amarillo, Aperol y jugo de limón",
         "price": 80,
-        "img": "/terrazzo/assets/naked-and-famous.jpg"
+        "img": "/terrazzo/assets/naked-and-famous.png"
     },
     {
         "id": "chrysanthemum",
@@ -245,7 +245,7 @@
         "name": "Chrysanthemum",
         "description": "Vermouth dry, Chartreuse amarillo, absenta y twist de naranja",
         "price": 80,
-        "img": "/terrazzo/assets/chrysanthemum.jpg"
+        "img": "/terrazzo/assets/chrysanthemum.png"
     },
     {
         "id": "extraordinaria-margarita",
@@ -253,7 +253,7 @@
         "name": "Extraordinaria Margarita",
         "description": "Maestro Dobel cristalino, Aperol, limón y Cointreau especial",
         "price": 80,
-        "img": "/terrazzo/assets/extraordinaria-margarita.jpg"
+        "img": "/terrazzo/assets/extraordinaria-margarita.png"
     },
     {
         "id": "colada",
@@ -261,6 +261,6 @@
         "name": "Colada",
         "description": "Ron, Malibú, Carnation, Calahua y jugo de piña",
         "price": 80,
-        "img": "/terrazzo/assets/colada.jpg"
+        "img": "/terrazzo/assets/colada.png"
     }
 ]
