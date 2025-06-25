@@ -69,7 +69,7 @@
         "name": "BBQ",
         "description": "Glaseado BBQ ahumado y dulce",
         "price": 105,
-        "img": "/terrazzo/assets/bbq.png"
+        "img": "/terrazzo/assets/alitasbbq.png"
     },
     {
         "id": "alitas-ajo-arriero",
