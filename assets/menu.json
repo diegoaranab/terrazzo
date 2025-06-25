@@ -5,7 +5,7 @@
         "name": "Sencilla",
         "description": "Carne de res, mezcla de quesos fundidos y ensalada del huerto",
         "price": 75,
-        "img": "/terrazzo/assets/sencilla.jpg"
+        "img": "/terrazzo/assets/sencilla.png"
     },
     {
         "id": "bbq-burger",
@@ -13,7 +13,7 @@
         "name": "BBQ",
         "description": "Carne de res en salsa BBQ, quesos fundidos y ensalada del huerto",
         "price": 85,
-        "img": "/terrazzo/assets/bbq.jpg"
+        "img": "/terrazzo/assets/bbq.png"
     },
     {
         "id": "champis-burger",
@@ -21,7 +21,7 @@
         "name": "Champis",
         "description": "Carne de res, champiñones asados, quesos fundidos y ensalada del huerto",
         "price": 85,
-        "img": "/terrazzo/assets/champis.jpg"
+        "img": "/terrazzo/assets/champis.png"
     },
     {
         "id": "fatboy-burger",
