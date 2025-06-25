@@ -1,0 +1,266 @@
+[
+    {
+        "id": "sencilla-burger",
+        "category": "hamburguesas",
+        "name": "Sencilla",
+        "description": "Carne de res, mezcla de quesos fundidos y ensalada del huerto",
+        "price": 75,
+        "img": "/assets/menu/hamburguesas/sencilla.jpg"
+    },
+    {
+        "id": "bbq-burger",
+        "category": "hamburguesas",
+        "name": "BBQ",
+        "description": "Carne de res en salsa BBQ, quesos fundidos y ensalada del huerto",
+        "price": 85,
+        "img": "/assets/menu/hamburguesas/bbq.jpg"
+    },
+    {
+        "id": "champis-burger",
+        "category": "hamburguesas",
+        "name": "Champis",
+        "description": "Carne de res, champiñones asados, quesos fundidos y ensalada del huerto",
+        "price": 85,
+        "img": "/assets/menu/hamburguesas/champis.jpg"
+    },
+    {
+        "id": "fatboy-burger",
+        "category": "hamburguesas",
+        "name": "Fat Boy",
+        "description": "Carne de res con papas a la francesa, extra queso y tocino crujiente",
+        "price": 95,
+        "img": "/assets/menu/hamburguesas/fatboy.jpg"
+    },
+    {
+        "id": "choriburger",
+        "category": "hamburguesas",
+        "name": "Choriburger",
+        "description": "Carne de res, abundante chorizo, quesos de la casa y guacamole",
+        "price": 95,
+        "img": "/assets/menu/hamburguesas/choriburger.jpg"
+    },
+    {
+        "id": "cheestorra-burger",
+        "category": "hamburguesas",
+        "name": "Cheestorra",
+        "description": "Carne de res, chistorra asada, aros de cebolla y guacamole",
+        "price": 95,
+        "img": "/assets/menu/hamburguesas/cheestorra.jpg"
+    },
+    {
+        "id": "hawaiana-burger",
+        "category": "hamburguesas",
+        "name": "Hawaiana",
+        "description": "Carne de res, queso, jamón, tocino y piña grillada",
+        "price": 95,
+        "img": "/assets/menu/hamburguesas/hawaiana.jpg"
+    },
+    {
+        "id": "terrazzo-burger",
+        "category": "hamburguesas",
+        "name": "Terrazzo",
+        "description": "Arrachera, chistorra y chorizo con quesos fundidos y guacamole",
+        "price": 105,
+        "img": "/assets/menu/hamburguesas/terrazzo.jpg"
+    },
+    {
+        "id": "alitas-bbq",
+        "category": "alitas",
+        "name": "BBQ",
+        "description": "Glaseado BBQ ahumado y dulce",
+        "price": 105,
+        "img": "/assets/menu/alitas/bbq.jpg"
+    },
+    {
+        "id": "alitas-ajo-arriero",
+        "category": "alitas",
+        "name": "Ajo Arriero",
+        "description": "Salsa de ajo con ligero toque picoso",
+        "price": 105,
+        "img": "/assets/menu/alitas/ajo-arriero.jpg"
+    },
+    {
+        "id": "alitas-lemon-pepper",
+        "category": "alitas",
+        "name": "Lemon Pepper",
+        "description": "Secas, cítricas y especiadas con pimienta",
+        "price": 105,
+        "img": "/assets/menu/alitas/lemon-pepper.jpg"
+    },
+    {
+        "id": "alitas-mango-habanero",
+        "category": "alitas",
+        "name": "Mango Habanero",
+        "description": "Agridulce de mango con picor de habanero",
+        "price": 105,
+        "img": "/assets/menu/alitas/mango-habanero.jpg"
+    },
+    {
+        "id": "alitas-ajo-parmesano",
+        "category": "alitas",
+        "name": "Ajo Parmesano",
+        "description": "Mantequilla de ajo y lluvia de parmesano",
+        "price": 105,
+        "img": "/assets/menu/alitas/ajo-parmesano.jpg"
+    },
+    {
+        "id": "alitas-habanero",
+        "category": "alitas",
+        "name": "Habanero",
+        "description": "Salsa habanero intensa y muy picante",
+        "price": 105,
+        "img": "/assets/menu/alitas/habanero.jpg"
+    },
+    {
+        "id": "alitas-buffalo",
+        "category": "alitas",
+        "name": "Buffalo",
+        "description": "Clásica salsa búfalo con mantequilla",
+        "price": 105,
+        "img": "/assets/menu/alitas/buffalo.jpg"
+    },
+    {
+        "id": "alitas-hot-street",
+        "category": "alitas",
+        "name": "Hot Street",
+        "description": "Receta extra picante estilo callejero",
+        "price": 105,
+        "img": "/assets/menu/alitas/hot-street.jpg"
+    },
+    {
+        "id": "alitas-chipotle",
+        "category": "alitas",
+        "name": "Chipotle",
+        "description": "Salsa cremosa de chipotle ahumado",
+        "price": 105,
+        "img": "/assets/menu/alitas/chipotle.jpg"
+    },
+    {
+        "id": "jocho-sencillo",
+        "category": "jochos",
+        "name": "Jocho Sencillo",
+        "description": "Salchicha frita, queso fundido y ensalada tricolor",
+        "price": 60,
+        "img": "/assets/menu/jochos/sencillo.jpg"
+    },
+    {
+        "id": "jocho-tocino",
+        "category": "jochos",
+        "name": "Jocho Tocino",
+        "description": "Salchicha envuelta en tocino, queso fundido y ensalada tricolor",
+        "price": 75,
+        "img": "/assets/menu/jochos/tocino.jpg"
+    },
+    {
+        "id": "choridog",
+        "category": "jochos",
+        "name": "Choridog",
+        "description": "Chorizo a la parrilla, queso fundido y ensalada tricolor",
+        "price": 75,
+        "img": "/assets/menu/jochos/choridog.jpg"
+    },
+    {
+        "id": "nachos-clasicos",
+        "category": "nachos",
+        "name": "Nachos Clásicos",
+        "description": "Totopos con cheddar, frijoles y ensalada tricolor",
+        "price": 70,
+        "img": "/assets/menu/nachos/clasicos.jpg"
+    },
+    {
+        "id": "nachos-lujo",
+        "category": "nachos",
+        "name": "Nachos de Lujo",
+        "description": "Totopos con cheddar y proteína (chistorra, chorizo y arrachera)",
+        "price": 90,
+        "img": "/assets/menu/nachos/lujo.jpg"
+    },
+    {
+        "id": "nachos-oro-verde",
+        "category": "nachos",
+        "name": "Nachos Oro Verde",
+        "description": "Totopos con guacamole, proteínas grilladas y ensalada",
+        "price": 90,
+        "img": "/assets/menu/nachos/oro-verde.jpg"
+    },
+    {
+        "id": "red-clouding",
+        "category": "cocteleria",
+        "name": "Red Clouding",
+        "description": "Matusalem, jamaica, jengibre, limón, lavanda bitter y clara de huevo",
+        "price": 80,
+        "img": "/assets/menu/cocteles/red-clouding.jpg"
+    },
+    {
+        "id": "casper",
+        "category": "cocteleria",
+        "name": "Casper",
+        "description": "Vodka, jugo de manzana, vainilla syrup y cardamomo",
+        "price": 80,
+        "img": "/assets/menu/cocteles/casper.jpg"
+    },
+    {
+        "id": "hiroshima",
+        "category": "cocteleria",
+        "name": "Hiroshima",
+        "description": "Ginebra, Midori, agua de aloe y limón amarillo",
+        "price": 80,
+        "img": "/assets/menu/cocteles/hiroshima.jpg"
+    },
+    {
+        "id": "terrapop",
+        "category": "cocteleria",
+        "name": "Terrapop",
+        "description": "Vodka, agua mineral, Sprite, Boost y Tutsi Pop",
+        "price": 80,
+        "img": "/assets/menu/cocteles/terrapop.jpg"
+    },
+    {
+        "id": "flamingo",
+        "category": "cocteleria",
+        "name": "Flamingo",
+        "description": "Vodka tamarindo, ron de mango, jugos tropicales y granadina",
+        "price": 80,
+        "img": "/assets/menu/cocteles/flamingo.jpg"
+    },
+    {
+        "id": "carino",
+        "category": "cocteleria",
+        "name": "Cariño (Erik van Beek)",
+        "description": "Matusalem 15, yogurt griego, Chartreuse amarillo y vainilla",
+        "price": 80,
+        "img": "/assets/menu/cocteles/carino.jpg"
+    },
+    {
+        "id": "naked-and-famous",
+        "category": "cocteleria",
+        "name": "Naked and Famous",
+        "description": "Mezcal, Chartreuse amarillo, Aperol y jugo de limón",
+        "price": 80,
+        "img": "/assets/menu/cocteles/naked-and-famous.jpg"
+    },
+    {
+        "id": "chrysanthemum",
+        "category": "cocteleria",
+        "name": "Chrysanthemum",
+        "description": "Vermouth dry, Chartreuse amarillo, absenta y twist de naranja",
+        "price": 80,
+        "img": "/assets/menu/cocteles/chrysanthemum.jpg"
+    },
+    {
+        "id": "extraordinaria-margarita",
+        "category": "cocteleria",
+        "name": "Extraordinaria Margarita",
+        "description": "Maestro Dobel cristalino, Aperol, limón y Cointreau especial",
+        "price": 80,
+        "img": "/assets/menu/cocteles/extraordinaria-margarita.jpg"
+    },
+    {
+        "id": "colada",
+        "category": "cocteleria",
+        "name": "Colada",
+        "description": "Ron, Malibú, Carnation, Calahua y jugo de piña",
+        "price": 80,
+        "img": "/assets/menu/cocteles/colada.jpg"
+    }
+]

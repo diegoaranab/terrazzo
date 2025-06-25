@@ -1,0 +1,37 @@
+[
+    {
+        "id": "dia-hamburguesa",
+        "title": "Día de la Hamburguesa",
+        "date": "2025-05-28",
+        "description": "¡Todas las burgers a $70 todo el día!",
+        "img": "/assets/events/dia-hamburguesa.jpg"
+    },
+    {
+        "id": "america-final",
+        "title": "Final Liga MX · América vs Tigres",
+        "date": "2025-05-25 20:00",
+        "description": "Pantalla gigante, 2×1 en tarros durante el partido.",
+        "img": "/assets/events/america-final.jpg"
+    },
+    {
+        "id": "dj-long-weekend",
+        "title": "Jueves-Domingo DJ Set",
+        "date": "2025-06-26 21:00",
+        "description": "Cachirula + loojanmusic en cabina. Perreo 🔥 todo el finde.",
+        "img": "/assets/events/dj-nights.jpg"
+    },
+    {
+        "id": "innovarte-bazar",
+        "title": "Cocktail gratis · Innovarte Bazar",
+        "date": "2025-04-30",
+        "description": "Compra mínima $150 en Innovarte y canjea un cocktail en Terrazzo.",
+        "img": "/assets/events/innovarte.jpg"
+    },
+    {
+        "id": "aniversario-7",
+        "title": "7.º Aniversario Terrazzo",
+        "date": "2025-03-15 20:00",
+        "description": "Música en vivo, promos especiales y pastel gigante.",
+        "img": "/assets/events/aniversario7.jpg"
+    }
+]
