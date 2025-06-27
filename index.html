@@ -222,10 +222,16 @@
             background: #1a1c2c;
             border: none;
             transition: transform .25s;
+            display: flex;
+            flex-direction: column;
         }
 
         .menu-card:hover {
             transform: translateY(-4px);
+        }
+
+        .menu-card .card-body {
+            flex: 1 1 auto;
         }
 
         /* ----------  Gallery ------------- */
@@ -448,6 +454,7 @@
                     menuGrid.flickityInstance = null;
                 }
                 syncCarousels();                         // will build a fresh slider if we are on mobile
+                equaliseCardHeights(menuGrid);
             }
 
 
@@ -498,6 +505,26 @@
             });
         }
 
+        /* --- make all visible cards the same height --------------------------- */
+        function equaliseCardHeights(grid) {
+            /* pick only the cells that are currently visible inside the grid */
+            const cards = grid.querySelectorAll('.carousel-cell .menu-card');
+
+            /* 1 – measure tallest card */
+            let max = 0;
+            cards.forEach(c => {
+                c.style.height = '';               // reset first
+                if (c.offsetHeight > max) max = c.offsetHeight;
+            });
+
+            /* 2 – fix every card to that height */
+            cards.forEach(c => { c.style.height = max + 'px'; });
+
+            /* if a Flickity instance exists, tell it the cells changed size        */
+            if (grid.flickityInstance) { grid.flickityInstance.resize(); }
+        }
+
+
         /* helper: enable or destroy carousels when we cross break-points */
         function syncCarousels() {
             const isMobile = window.matchMedia('(max-width: 767.98px)').matches;
@@ -518,6 +545,7 @@
                         pageDots: true
                     });
                     grid.flickityInstance.select(0, false, true);   // always start centred
+                    equaliseCardHeights(grid);
                 }
 
                 /* === destroy slider on ≥ md so Bootstrap grid takes over ====== */
