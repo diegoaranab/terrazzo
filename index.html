@@ -72,15 +72,17 @@
         /* ---- Flickity skin tuned to Terrazzo ---- */
         @media (max-width: 767.98px) {
 
-            /* size each slide */
+            /* every slide ≈80 % of the viewport so neighbours “peek in” */
             .carousel-cell {
-                width: 85%;
-                margin-right: .75rem;
+                width: 80%;
+                margin: 0 .75rem;
             }
 
-            /* feel free to tweak */
+            /* page-dots a little lower */
+            .flickity-page-dots {
+                margin-top: .75rem;
+            }
 
-            /* dots */
             .flickity-page-dots .dot {
                 width: 8px;
                 height: 8px;
@@ -93,11 +95,12 @@
                 opacity: 1;
             }
 
-            /* arrows (if you ever enable them) */
+            /* arrow icons should you enable prev/next later */
             .flickity-button-icon {
                 fill: var(--pure-white);
             }
         }
+
 
 
         /* ----------  Hero ----------------- */
@@ -390,6 +393,11 @@
                 cards().forEach(card => {
                     card.style.display = (card.dataset.category === filter) ? 'block' : 'none';
                 });
+                if (menuGrid.flickityInstance) {
+                    menuGrid.flickityInstance.destroy();
+                    menuGrid.flickityInstance = null;
+                    syncCarousels();              // recreate with visible cells only
+                }
             }
 
             // wire click handlers
@@ -438,28 +446,33 @@
             });
         }
 
-        /* helper: enable or destroy carousels when we cross breakpoints */
+        /* helper: enable or destroy carousels when we cross break-points */
         function syncCarousels() {
             const isMobile = window.matchMedia('(max-width: 767.98px)').matches;
 
             [menuGrid, eventGrid].forEach(grid => {
+                /* enable on mobile only */
                 if (isMobile && !grid.flickityInstance) {
                     grid.flickityInstance = new Flickity(grid, {
-                        cellAlign: 'left',
+                        /* centred slide, neighbours visible */
+                        cellAlign: 'center',
                         contain: true,
+                        /* UX */
+                        draggable: true,
                         pageDots: true,
                         prevNextButtons: false,
-                        imagesLoaded: true,
-                        freeScroll: false,
-                        draggable: true
+                        wrapAround: false,
+                        imagesLoaded: true   // wait for <img> before sizing
                     });
                 }
+                /* destroy when we grow back to ≥md so the grid uses Bootstrap cols */
                 if (!isMobile && grid.flickityInstance) {
                     grid.flickityInstance.destroy();
                     grid.flickityInstance = null;
                 }
             });
         }
+
 
         /* call once after each grid is populated */
         Promise.allSettled([
