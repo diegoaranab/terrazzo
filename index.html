@@ -411,8 +411,9 @@
         //         buildCards(data); // inject all items
         //         initFilters();    // then hide/show by default
         //     })
-        //     .catch(err => console.error('Menu JSON load error:', err));
+        //     .catch(err => console.error('Menu JSON load error:', err)); 
 
+        
         function buildCards(items) {
             items.forEach(item => {
                 const col = document.createElement('div');
@@ -420,7 +421,7 @@
                 col.dataset.category = item.category;
 
                 col.innerHTML = `
-  <div class="card menu-card h-100">
+  <div class="card menu-card h-100 my-2">
     <div class="ratio ratio-4x3">
       <img src="${item.img}" class="card-img-top object-fit-cover" alt="${item.name}">
     </div>
@@ -492,7 +493,7 @@
                 const col = document.createElement('div');
                 col.className = 'col-md-4 carousel-cell';
                 col.innerHTML = `
-  <div class="card menu-card h-100">
+  <div class="card menu-card h-100 my-2">
     <div class="ratio ratio-4x3">
       <img src="${ev.img}" class="card-img-top object-fit-cover" alt="${ev.title}">
     </div>
