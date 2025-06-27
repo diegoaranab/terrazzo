@@ -17,6 +17,9 @@
 
     <!-- Lightbox for gallery -->
     <link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet">
+    <!-- Flickity (CSS first, then JS) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flickity@2/dist/flickity.min.css">
+
 
     <style>
         /* ----------  Brand Tokens ----------------- */
@@ -65,6 +68,37 @@
         .object-fit-cover {
             object-fit: cover;
         }
+
+        /* ---- Flickity skin tuned to Terrazzo ---- */
+        @media (max-width: 767.98px) {
+
+            /* size each slide */
+            .carousel-cell {
+                width: 85%;
+                margin-right: .75rem;
+            }
+
+            /* feel free to tweak */
+
+            /* dots */
+            .flickity-page-dots .dot {
+                width: 8px;
+                height: 8px;
+                margin: 0 4px;
+                background: var(--neon-aqua);
+                opacity: .4;
+            }
+
+            .flickity-page-dots .dot.is-selected {
+                opacity: 1;
+            }
+
+            /* arrows (if you ever enable them) */
+            .flickity-button-icon {
+                fill: var(--pure-white);
+            }
+        }
+
 
         /* ----------  Hero ----------------- */
         .hero {
@@ -292,6 +326,8 @@
 ================================================= -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/flickity@2/dist/flickity.pkgd.min.js"></script>
+
 
     <script>
         /* ===== Promo ticker: duplicate & pause on hover ===== */
@@ -311,18 +347,18 @@
         const menuURL = '/terrazzo/assets/menu.json';
         const menuGrid = document.getElementById('menu-grid');
 
-        fetch(menuURL)
-            .then(res => res.json())
-            .then(data => {
-                buildCards(data); // inject all items
-                initFilters();    // then hide/show by default
-            })
-            .catch(err => console.error('Menu JSON load error:', err));
+        // fetch(menuURL)
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         buildCards(data); // inject all items
+        //         initFilters();    // then hide/show by default
+        //     })
+        //     .catch(err => console.error('Menu JSON load error:', err));
 
         function buildCards(items) {
             items.forEach(item => {
                 const col = document.createElement('div');
-                col.className = 'col-sm-6 col-lg-4 menu-item';
+                col.className = 'col-sm-6 col-lg-4 menu-item carousel-cell';
                 col.dataset.category = item.category;
 
                 col.innerHTML = `
@@ -373,15 +409,15 @@
         const eventsURL = '/terrazzo/assets/events.json';
         const eventGrid = document.getElementById('event-grid');
 
-        fetch(eventsURL)
-            .then(res => res.json())
-            .then(events => buildEventCards(events))
-            .catch(err => console.error('Events JSON load error:', err));
+        // fetch(eventsURL)
+        //     .then(res => res.json())
+        //     .then(events => buildEventCards(events))
+        //     .catch(err => console.error('Events JSON load error:', err));
 
         function buildEventCards(events) {
             events.forEach(ev => {
                 const col = document.createElement('div');
-                col.className = 'col-md-4';
+                col.className = 'col-md-4 carousel-cell';
                 col.innerHTML = `
   <div class="card menu-card h-100">
     <div class="ratio ratio-4x3">
@@ -402,6 +438,42 @@
             });
         }
 
+        /* helper: enable or destroy carousels when we cross breakpoints */
+        function syncCarousels() {
+            const isMobile = window.matchMedia('(max-width: 767.98px)').matches;
+
+            [menuGrid, eventGrid].forEach(grid => {
+                if (isMobile && !grid.flickityInstance) {
+                    grid.flickityInstance = new Flickity(grid, {
+                        cellAlign: 'left',
+                        contain: true,
+                        pageDots: true,
+                        prevNextButtons: false,
+                        imagesLoaded: true,
+                        freeScroll: false,
+                        draggable: true
+                    });
+                }
+                if (!isMobile && grid.flickityInstance) {
+                    grid.flickityInstance.destroy();
+                    grid.flickityInstance = null;
+                }
+            });
+        }
+
+        /* call once after each grid is populated */
+        Promise.allSettled([
+            fetch(menuURL).then(r => r.json()).then(data => { buildCards(data); initFilters(); }),
+            fetch(eventsURL).then(r => r.json()).then(buildEventCards)
+        ]).then(syncCarousels);
+
+        /* re-evaluate on orientation / window resize */
+        window.addEventListener('resize', debounce(syncCarousels, 150));
+
+        /* tiny debounce helper */
+        function debounce(fn, wait) {
+            let t; return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), wait); };
+        }
 
 
         /* ===== Lightbox ===== */
