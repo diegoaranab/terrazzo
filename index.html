@@ -101,6 +101,27 @@
             }
         }
 
+        /* === extra mobile-carousel fixes ============================== */
+        @media (max-width: 767.98px) {
+
+            /* neutralise Bootstrap’s column sizing while the row is a Flickity slider */
+            .flickity-enabled .carousel-cell {
+                flex: 0 0 auto !important;
+                /* cancel col-* flex-basis              */
+                width: 80% !important;
+                /* real 80 % slide that shows neighbours*/
+                padding-left: 0 !important;
+                /* cancel the row-gutter padding        */
+                padding-right: 0 !important;
+            }
+
+            /* comfortable space between card & dots */
+            .flickity-page-dots {
+                margin-top: 1.5rem;
+            }
+        }
+
+
         /* --- mobile carousel tweaks --------------------------------------------- */
         @media (max-width: 767.98px) {
 
@@ -411,22 +432,23 @@
             const cards = () => document.querySelectorAll('.menu-item'); // fresh each time
 
             function applyFilter(filter) {
-                /* mark active button */
-                btns.forEach(b => b.classList.toggle('active', b.dataset.filter === filter));
+                const cardsList = cards();               // fresh NodeList each call
 
-                /* show / hide cards and keep .carousel-cell only on the visible ones */
-                cards().forEach(card => {
-                    const show = (filter === 'all' || card.dataset.category === filter);
-                    card.style.display = show ? 'block' : 'none';
-                    card.classList.toggle('carousel-cell', show);
+                /* 1 – show only the wanted category & keep the Flickity cell class on visibles */
+                cardsList.forEach(card => {
+                    const visible = card.dataset.category === filter;
+                    card.style.display = visible ? 'block' : 'none';
+                    card.classList.toggle('carousel-cell', visible);
                 });
 
-                /* if Flickity is running, rebuild with the new cell set */
+                /* 2 – re-create Flickity so the slide list & page-dots are recalculated */
                 if (menuGrid.flickityInstance) {
-                    menuGrid.flickityInstance.reloadCells();
-                    menuGrid.flickityInstance.select(0, false, true);      // recenter first slide
+                    menuGrid.flickityInstance.destroy();
+                    menuGrid.flickityInstance = null;
                 }
+                syncCarousels();                         // will build a fresh slider if we are on mobile
             }
+
 
 
             // wire click handlers
@@ -480,7 +502,7 @@
             const isMobile = window.matchMedia('(max-width: 767.98px)').matches;
 
             [menuGrid, eventGrid].forEach(grid => {
-                /* enable slider on mobile */
+                /* === enable slider on mobile ================================= */
                 if (isMobile && !grid.flickityInstance) {
                     grid.flickityInstance = new Flickity(grid, {
                         cellAlign: 'center',
@@ -490,16 +512,17 @@
                         prevNextButtons: false,
                         pageDots: true
                     });
-                    grid.flickityInstance.select(0, false, true);   // make sure it starts centred
+                    grid.flickityInstance.select(0, false, true);   // always start centred
                 }
 
-                /* destroy slider when back on ≥ md */
+                /* === destroy slider on ≥ md so Bootstrap grid takes over ====== */
                 if (!isMobile && grid.flickityInstance) {
                     grid.flickityInstance.destroy();
                     grid.flickityInstance = null;
                 }
             });
         }
+
 
 
 
