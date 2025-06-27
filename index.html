@@ -113,6 +113,7 @@
                 padding-left: 0 !important;
                 /* cancel the row-gutter padding        */
                 padding-right: 0 !important;
+                box-sizing: border-box;
             }
 
             /* comfortable space between card & dots */
@@ -505,6 +506,10 @@
                 /* === enable slider on mobile ================================= */
                 if (isMobile && !grid.flickityInstance) {
                     grid.flickityInstance = new Flickity(grid, {
+                        /* use only those children that KEEP this class                */
+                        cellSelector: '.carousel-cell',
+
+                        /* existing options …                                          */
                         cellAlign: 'center',
                         contain: true,
                         imagesLoaded: true,
