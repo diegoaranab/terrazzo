@@ -236,9 +236,16 @@
             flex: 1 1 auto;
         }
 
+        /* ────────────────────────────────────────────────────────── */
+        /* push the footer down so all cards match the card-body   */
+        /* height above it (even if text is longer or shorter)     */
+        /* ────────────────────────────────────────────────────────── */
         .menu-card .card-footer {
-            flex-shrink: 0;
+            margin-top: auto;
         }
+
+
+
 
 
         /* ----------  Gallery ------------- */
@@ -513,6 +520,22 @@
             });
         }
 
+        // ──────────────────────────────────────────────────────────────
+        // FORCE the events-carousel to run on mobile **right away**
+        // ──────────────────────────────────────────────────────────────
+        function initEventCarouselIfMobile() {
+            if (window.matchMedia('(max-width: 767.98px)').matches) {
+                // destroy any half-baked slider
+                if (eventGrid.flickityInstance) {
+                    eventGrid.flickityInstance.destroy();
+                    eventGrid.flickityInstance = null;
+                }
+                // build it properly now
+                syncCarousels();
+            }
+        }
+
+
         /* --- make all visible cards the same height --------------------------- */
         function equaliseCardHeights(grid) {
             /* pick only the cells that are currently visible inside the grid */
@@ -574,10 +597,15 @@
 
 
 
-        /* call once after each grid is populated */
+        // after you build the cards & wire up resize…
         Promise.allSettled([
-            fetch(menuURL).then(r => r.json()).then(data => { buildCards(data); initFilters(); }),
-            fetch(eventsURL).then(r => r.json()).then(buildEventCards)
+            fetch(menuURL).then(r => r.json()).then(data => {
+                buildCards(data); initFilters();
+            }),
+            fetch(eventsURL).then(r => r.json()).then(ev => {
+                buildEventCards(ev);
+                initEventCarouselIfMobile();       // ← **NEW**  
+            })
         ]).then(syncCarousels);
 
         /* re-evaluate on orientation / window resize */
@@ -591,6 +619,10 @@
 
         /* ===== Lightbox ===== */
         const lightbox = GLightbox({ selector: '.glightbox' });
+
+
+
+
     </script>
 
 
