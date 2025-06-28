@@ -126,11 +126,7 @@
         /* --- mobile carousel tweaks --------------------------------------------- */
         @media (max-width: 767.98px) {
 
-            /* the .row has -15 px side-margins; cancel them once the row is a slider */
-            .flickity-enabled.row {
-                margin-left: 0;
-                margin-right: 0;
-            }
+
 
             /* cancel padding that .col-* adds so every slide is an exact 80 % width */
             .flickity-enabled .carousel-cell {
@@ -145,8 +141,8 @@
 
             .flickity-enabled.row {
                 display: block !important;
-                margin-left: 0 !important;
-                margin-right: 0 !important;
+                margin: 0 !important;
+                padding: 0 !important;
             }
         }
 
@@ -239,6 +235,11 @@
         .menu-card .card-body {
             flex: 1 1 auto;
         }
+
+        .menu-card .card-footer {
+            flex-shrink: 0;
+        }
+
 
         /* ----------  Gallery ------------- */
         .gallery-img {
@@ -413,7 +414,7 @@
         //     })
         //     .catch(err => console.error('Menu JSON load error:', err)); 
 
-        
+
         function buildCards(items) {
             items.forEach(item => {
                 const col = document.createElement('div');
@@ -539,11 +540,8 @@
             [menuGrid, eventGrid].forEach(grid => {
                 /* === enable slider on mobile ================================= */
                 if (isMobile && !grid.flickityInstance) {
-                    grid.flickityInstance = new Flickity(grid, {
-                        /* use only those children that KEEP this class                */
+                    const flkty = new Flickity(grid, {
                         cellSelector: '.carousel-cell',
-
-                        /* existing options …                                          */
                         cellAlign: 'center',
                         contain: true,
                         imagesLoaded: true,
@@ -551,8 +549,14 @@
                         prevNextButtons: false,
                         pageDots: true
                     });
-                    grid.flickityInstance.select(0, false, true);   // always start centred
-                    equaliseCardHeights(grid);
+                    grid.flickityInstance = flkty;
+                    flkty.select(0, false, true);
+
+                    // ── NEW: equalise *every* card once Flickity is ready,
+                    //     and again after each slide settles ──
+                    flkty.once('ready', () => equaliseCardHeights(grid));
+                    flkty.on('settle', () => equaliseCardHeights(grid));
+
                 }
 
                 /* === destroy slider on ≥ md so Bootstrap grid takes over ====== */
