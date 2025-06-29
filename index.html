@@ -220,39 +220,46 @@
             margin: .25rem;
         }
 
+        /* ─────────────── MENU CARDS (flex) ─────────────── */
         .menu-card {
             background: #1a1c2c;
             border: none;
             transition: transform .25s;
-            display: grid;
-            grid-template-rows: auto 1fr auto;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            /* take full height of Flickity cell */
         }
-
-        .menu-card .card-body {
-            /* keep the body row from growing past its grid track */
-            overflow: hidden;
-        }
-
 
         .menu-card:hover {
             transform: translateY(-4px);
         }
 
+        /* image stays natural */
+        .menu-card .ratio {
+            flex-shrink: 0;
+        }
 
+        /* body grows to fill the space, pushing footer down */
+        .menu-card .card-body {
+            flex: 1 1 auto;
+            overflow: hidden;
+            /* if description is too long */
+        }
 
+        /* footer always at bottom */
+        .menu-card .card-footer {
+            flex-shrink: 0;
+        }
 
-
-        /* ────────────────────────────────────────────────────────── */
-        /* clamp every description to exactly 3 lines so all cards  */
-        /* have the same .card-body height, regardless of text      */
-        /* ────────────────────────────────────────────────────────── */
+        /* clamp descriptions to 3 lines */
         .menu-card .card-text {
             display: -webkit-box;
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 3;
-            /* ⇐ change “3” to however many lines you want */
             overflow: hidden;
         }
+
 
 
 
@@ -480,6 +487,8 @@
                     menuGrid.flickityInstance = null;
                 }
                 syncCarousels();                         // will build a fresh slider if we are on mobile
+                equaliseCardHeights(menuGrid);
+
             }
 
 
@@ -536,6 +545,23 @@
 
 
 
+        /* ────────────────────────────────────────────────────────── */
+        /* measure all visible cards in a grid and force them to  */
+        /* match the tallest one                                   */
+        /* ────────────────────────────────────────────────────────── */
+        function equaliseCardHeights(grid) {
+            const cards = grid.querySelectorAll('.carousel-cell .menu-card');
+            let max = 0;
+            cards.forEach(c => {
+                c.style.height = '';               // reset
+                max = Math.max(max, c.offsetHeight);
+            });
+            cards.forEach(c => c.style.height = max + 'px');
+            // tell Flickity in case it needs a resize
+            if (grid.flickityInstance) grid.flickityInstance.resize();
+        }
+
+
         /* helper: enable or destroy carousels when we cross break-points */
         function syncCarousels() {
             const isMobile = window.matchMedia('(max-width: 767.98px)').matches;
@@ -554,6 +580,9 @@
                     });
                     grid.flickityInstance = flkty;
                     flkty.select(0, false, true);
+                    flkty.once('ready', () => equaliseCardHeights(grid));
+                    flkty.on('settle', () => equaliseCardHeights(grid));
+
 
 
 
@@ -579,7 +608,12 @@
             fetch(eventsURL).then(r => r.json()).then(ev => {
                 buildEventCards(ev);
             })
-        ]).then(syncCarousels);
+        ]).then(() => {
+            syncCarousels();
+            // force-run our height-equaliser immediately
+            equaliseCardHeights(menuGrid);
+            equaliseCardHeights(eventGrid);
+        });
 
         /* re-evaluate on orientation / window resize */
         window.addEventListener('resize', debounce(syncCarousels, 150));
