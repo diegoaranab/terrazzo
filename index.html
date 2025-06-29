@@ -244,6 +244,19 @@
             margin-top: auto;
         }
 
+        /* ────────────────────────────────────────────────────────── */
+        /* clamp every description to exactly 3 lines so all cards  */
+        /* have the same .card-body height, regardless of text      */
+        /* ────────────────────────────────────────────────────────── */
+        .menu-card .card-text {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            /* ⇐ change “3” to however many lines you want */
+            overflow: hidden;
+        }
+
+
 
 
 
