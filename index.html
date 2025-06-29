@@ -224,25 +224,23 @@
             background: #1a1c2c;
             border: none;
             transition: transform .25s;
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
         }
+
+        .menu-card .card-body {
+            /* keep the body row from growing past its grid track */
+            overflow: hidden;
+        }
+
 
         .menu-card:hover {
             transform: translateY(-4px);
         }
 
-        .menu-card .card-body {
-            flex: 1 1 auto;
-        }
 
-        /* ────────────────────────────────────────────────────────── */
-        /* push the footer down so all cards match the card-body   */
-        /* height above it (even if text is longer or shorter)     */
-        /* ────────────────────────────────────────────────────────── */
-        .menu-card .card-footer {
-            margin-top: auto;
-        }
+
+
 
         /* ────────────────────────────────────────────────────────── */
         /* clamp every description to exactly 3 lines so all cards  */
@@ -482,7 +480,6 @@
                     menuGrid.flickityInstance = null;
                 }
                 syncCarousels();                         // will build a fresh slider if we are on mobile
-                equaliseCardHeights(menuGrid);
             }
 
 
@@ -533,40 +530,10 @@
             });
         }
 
-        // ──────────────────────────────────────────────────────────────
-        // FORCE the events-carousel to run on mobile **right away**
-        // ──────────────────────────────────────────────────────────────
-        function initEventCarouselIfMobile() {
-            if (window.matchMedia('(max-width: 767.98px)').matches) {
-                // destroy any half-baked slider
-                if (eventGrid.flickityInstance) {
-                    eventGrid.flickityInstance.destroy();
-                    eventGrid.flickityInstance = null;
-                }
-                // build it properly now
-                syncCarousels();
-            }
-        }
 
 
-        /* --- make all visible cards the same height --------------------------- */
-        function equaliseCardHeights(grid) {
-            /* pick only the cells that are currently visible inside the grid */
-            const cards = grid.querySelectorAll('.carousel-cell .menu-card');
 
-            /* 1 – measure tallest card */
-            let max = 0;
-            cards.forEach(c => {
-                c.style.height = '';               // reset first
-                if (c.offsetHeight > max) max = c.offsetHeight;
-            });
 
-            /* 2 – fix every card to that height */
-            cards.forEach(c => { c.style.height = max + 'px'; });
-
-            /* if a Flickity instance exists, tell it the cells changed size        */
-            if (grid.flickityInstance) { grid.flickityInstance.resize(); }
-        }
 
 
         /* helper: enable or destroy carousels when we cross break-points */
@@ -588,10 +555,7 @@
                     grid.flickityInstance = flkty;
                     flkty.select(0, false, true);
 
-                    // ── NEW: equalise *every* card once Flickity is ready,
-                    //     and again after each slide settles ──
-                    flkty.once('ready', () => equaliseCardHeights(grid));
-                    flkty.on('settle', () => equaliseCardHeights(grid));
+
 
                 }
 
@@ -601,10 +565,7 @@
                     grid.flickityInstance = null;
                 }
             });
-            if (isMobile) {
-                equaliseCardHeights(menuGrid);
-                equaliseCardHeights(eventGrid);
-            }
+
         }
 
 
@@ -617,7 +578,6 @@
             }),
             fetch(eventsURL).then(r => r.json()).then(ev => {
                 buildEventCards(ev);
-                initEventCarouselIfMobile();       // ← **NEW**  
             })
         ]).then(syncCarousels);
 
