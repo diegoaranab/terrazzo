@@ -537,6 +537,12 @@
 
                 eventGrid.appendChild(col);
             });
+            // once all event cards are appended:
+            if (window.matchMedia('(max-width: 767.98px)').matches) {
+                syncCarousels();
+                equaliseCardHeights(eventGrid);
+            }
+
         }
 
 
