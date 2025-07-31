@@ -257,6 +257,7 @@
             display: -webkit-box;
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 3;
+            line-clamp: 3;
             overflow: hidden;
         }
 
@@ -617,6 +618,12 @@
         ]).then(() => {
             syncCarousels();
             // force-run our height-equaliser immediately
+            equaliseCardHeights(menuGrid);
+            equaliseCardHeights(eventGrid);
+        });
+
+        /* ensure heights are correct after all images load */
+        window.addEventListener('load', () => {
             equaliseCardHeights(menuGrid);
             equaliseCardHeights(eventGrid);
         });
