@@ -294,6 +294,54 @@
         .gallery-carousel .flickity-page-dots{ margin-top: 1rem; }
         .gallery-carousel .flickity-page-dots .dot{ width: 8px; height: 8px; margin: 0 4px; opacity: .4; }
         .gallery-carousel .flickity-page-dots .dot.is-selected{ opacity: 1; }
+
+        /* === Cart (Carrito) UI ==================================================== */
+        .cart-fab {
+          position: fixed; right: 16px; bottom: 16px; z-index: 1100;
+          background: var(--cosmic-yellow); color: var(--space-navy);
+          border: none; border-radius: 999px; padding: 0.75rem 1rem;
+          box-shadow: 0 10px 24px rgba(0,0,0,.35);
+          display: flex; align-items: center; gap: .5rem; font-weight: 700;
+        }
+        .cart-fab:hover { background: var(--plasma-magenta); color:#fff; }
+
+        .cart-count-badge{
+          min-width: 1.6rem; height: 1.6rem; border-radius: 999px;
+          background: var(--space-navy); color: #fff; display:inline-flex;
+          align-items:center; justify-content:center; font-size:.85rem;
+        }
+
+        .offcanvas-terrazzo {
+          background: #0b0e2e; color: var(--pure-white);
+          border-left: 1px solid rgba(255,255,255,.08);
+        }
+        .cart-line + .cart-line { border-top: 1px dashed rgba(255,255,255,.15); }
+        .cart-line {
+          display:grid; grid-template-columns: 1fr auto; gap:.5rem; padding:.75rem 0;
+        }
+        .cart-line-title { font-weight:600; }
+        .cart-qty-wrap { display:flex; align-items:center; gap:.5rem; }
+        .qty-btn {
+          width: 2rem; height: 2rem; border-radius: .5rem; border: 0;
+          background: var(--nebula-purple); color:#fff; font-weight:700;
+        }
+        .qty-btn:hover { background: var(--plasma-magenta); }
+
+        .cart-total-row { display:flex; justify-content:space-between; font-weight:700; }
+        .cart-checkout-btn{
+          width:100%; background: var(--cosmic-yellow); color: var(--space-navy);
+          font-weight:700; border:0; padding:.75rem 1rem; border-radius:.5rem;
+        }
+        .cart-checkout-btn:hover { background: var(--plasma-magenta); color:#fff; }
+
+        /* Clamp descriptions so card heights match (keeps design tidy) */
+        .menu-card .card-text {
+          display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:3; overflow:hidden;
+        }
+        .menu-card { display:flex; flex-direction:column; height:100%; }
+        .menu-card .ratio { flex-shrink:0; }
+        .menu-card .card-body { flex:1 1 auto; overflow:hidden; }
+        .menu-card .card-footer { flex-shrink:0; }
     </style>
 </head>
 
@@ -411,6 +459,30 @@
         </div>
     </footer>
 
+    <!-- === Floating Cart Button === -->
+    <button id="cartFab" class="cart-fab" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartDrawer" aria-controls="cartDrawer">
+      🛒 Carrito <span id="cartCount" class="cart-count-badge">0</span>
+    </button>
+
+    <!-- === Offcanvas Cart Drawer === -->
+    <div class="offcanvas offcanvas-end offcanvas-terrazzo" tabindex="-1" id="cartDrawer" aria-labelledby="cartDrawerLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="cartDrawerLabel">Tu pedido</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body d-flex flex-column">
+        <div id="cartLines" class="mb-3"></div>
+        <div class="mt-auto">
+          <div class="cart-total-row mb-3">
+            <span>Total</span>
+            <span id="cartTotal">MX$ 0</span>
+          </div>
+          <button id="checkoutBtn" class="cart-checkout-btn">Enviar pedido por WhatsApp</button>
+          <p class="text-muted small mt-2 mb-0">Se abrirá WhatsApp con el resumen de tu pedido.</p>
+        </div>
+      </div>
+    </div>
+
     <!-- =================================================
   JS LIBS
 ================================================= -->
@@ -445,6 +517,49 @@
         const menuURL = '/terrazzo/assets/menu.json';
         const menuGrid = document.getElementById('menu-grid');
 
+        /* ===== Cart (Carrito) state & helpers ===== */
+        const PHONE_WA = '522381897602'; // MX +52 238 189 7602 for wa.me
+        const CART_KEY = 'terrazzo_cart_v1';
+
+        let CART = loadCart();
+
+        function loadCart(){
+          try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; }
+          catch(e){ return []; }
+        }
+        function saveCart(){
+          localStorage.setItem(CART_KEY, JSON.stringify(CART));
+          renderCart();
+        }
+        function findItem(id){ return CART.find(i => i.id === id); }
+
+        function addToCart(item, qty=1){
+          const existing = findItem(item.id);
+          if(existing){ existing.qty += qty; }
+          else { CART.push({...item, qty}); }
+          saveCart();
+        }
+        function removeFromCart(id){
+          CART = CART.filter(i => i.id !== id);
+          saveCart();
+        }
+        function updateQty(id, qty){
+          const it = findItem(id);
+          if(!it) return;
+          it.qty = Math.max(1, qty|0);
+          saveCart();
+        }
+        function clearCart(){
+          CART = []; saveCart();
+        }
+
+        function cartTotals(){
+          const items = CART.reduce((a,i)=>a+i.qty,0);
+          const total = CART.reduce((a,i)=>a + i.qty * (Number(i.price)||0), 0);
+          return {items, total};
+        }
+        function formatCurrency(n){ return 'MX$ ' + (Number(n)||0).toLocaleString('es-MX'); }
+
         // fetch(menuURL)
         //     .then(res => res.json())
         //     .then(data => {
@@ -470,15 +585,97 @@
       <p class="card-text small">${item.description}</p>
     </div>
     <div class="card-footer bg-transparent border-0 d-flex justify-content-between align-items-center">
-      <span class="fw-bold">MX$ ${item.price}</span>
-      <a href="https://wa.me/522381897602?text=Quiero%20ordenar%20${encodeURIComponent(item.name)}"
-         class="btn btn-cta btn-sm">Pedir</a>
+      <span class="fw-bold">${formatCurrency(item.price)}</span>
+      <button class="btn btn-cta btn-sm btn-add-cart"
+        data-id="${item.id || item.name}"
+        data-name="${item.name}"
+        data-price="${item.price}"
+        data-img="${item.img}">Añadir</button>
     </div>
   </div>`;
 
                 menuGrid.appendChild(col);
             });
         }
+
+        /* Add-to-cart (delegated) */
+        menuGrid.addEventListener('click', (e) => {
+          const btn = e.target.closest('.btn-add-cart');
+          if(!btn) return;
+          const item = {
+            id: btn.dataset.id,
+            name: btn.dataset.name,
+            price: Number(btn.dataset.price),
+            img: btn.dataset.img
+          };
+          addToCart(item, 1);
+        });
+
+        /* Render cart UI into offcanvas */
+        const cartCountEl = document.getElementById('cartCount');
+        const cartLinesEl = document.getElementById('cartLines');
+        const cartTotalEl = document.getElementById('cartTotal');
+        const checkoutBtn  = document.getElementById('checkoutBtn');
+
+        function renderCart(){
+          const {items, total} = cartTotals();
+          if(cartCountEl) cartCountEl.textContent = items;
+
+          cartLinesEl.innerHTML = '';
+          if(CART.length === 0){
+            cartLinesEl.innerHTML = '<p class="text-muted mb-0">Tu carrito está vacío.</p>';
+          } else {
+            CART.forEach(it => {
+              const line = document.createElement('div');
+              line.className = 'cart-line';
+              line.innerHTML = `
+        <div>
+          <div class="cart-line-title">${it.name}</div>
+          <div class="text-muted small">${formatCurrency(it.price)} c/u</div>
+        </div>
+        <div class="cart-qty-wrap">
+          <button class="qty-btn btn-dec" data-id="${it.id}" aria-label="Disminuir cantidad">−</button>
+          <input class="form-control form-control-sm text-center" style="width:3.25rem" type="number" min="1" value="${it.qty}" data-id="${it.id}">
+          <button class="qty-btn btn-inc" data-id="${it.id}" aria-label="Aumentar cantidad">+</button>
+          <button class="btn btn-sm btn-outline-light ms-2 btn-remove" data-id="${it.id}">Quitar</button>
+        </div>`;
+              cartLinesEl.appendChild(line);
+            });
+          }
+          cartTotalEl.textContent = formatCurrency(total);
+        }
+
+        /* quantity & remove (delegated) */
+        cartLinesEl.addEventListener('click', (e)=>{
+          const dec = e.target.closest('.btn-dec');
+          const inc = e.target.closest('.btn-inc');
+          const rem = e.target.closest('.btn-remove');
+          if(dec){ updateQty(dec.dataset.id, (findItem(dec.dataset.id)?.qty||1) - 1); }
+          if(inc){ updateQty(inc.dataset.id, (findItem(inc.dataset.id)?.qty||1) + 1); }
+          if(rem){ removeFromCart(rem.dataset.id); }
+        });
+        cartLinesEl.addEventListener('change', (e)=>{
+          const inp = e.target.closest('input[type="number"][data-id]');
+          if(!inp) return;
+          updateQty(inp.dataset.id, Number(inp.value||1));
+        });
+
+        /* Checkout to WhatsApp (Spanish message) */
+        checkoutBtn.addEventListener('click', ()=>{
+          if(CART.length === 0) return;
+          const { total } = cartTotals();
+          const lines = CART.map(it => `• ${it.qty} × ${it.name} — ${formatCurrency(it.price)} c/u = ${formatCurrency(it.qty * it.price)}`).join('%0A');
+          const msg =
+            `Hola, me gustaría ordenar:%0A%0A${lines}%0A%0ATotal: ${formatCurrency(total)}%0A%0AEnvío este pedido desde el sitio de Terrazzo.`;
+          const url = `https://wa.me/${PHONE_WA}?text=${msg}`;
+          // Clear cart immediately so it resets even if user returns
+          clearCart();
+          // go to WhatsApp
+          window.location.href = url;
+        });
+
+        /* initial paint */
+        renderCart();
 
         /* ===== Menu Filtering ===== */
         function initFilters() {
@@ -544,7 +741,7 @@
       <p class="card-text small">${ev.description}</p>
     </div>
     <div class="card-footer bg-transparent border-0 text-end">
-      <a href="https://wa.me/522381897602?text=Quiero%20reservar%20para%20${encodeURIComponent(ev.title)}"
+      <a href="https://wa.me/${PHONE_WA}?text=Quiero%20reservar%20para%20${encodeURIComponent(ev.title)}"
          class="btn btn-cta btn-sm">Reservar&nbsp;ya</a>
     </div>
   </div>`;
