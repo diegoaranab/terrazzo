@@ -267,14 +267,6 @@
 
 
 
-        /* ----------  Gallery ------------- */
-        .gallery-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: .5rem;
-        }
-
         /* ===== Gallery carousel (Flickity) ===== */
         .gallery-carousel {
             /* Flickity will add .flickity-enabled */
@@ -321,7 +313,7 @@
             }
         }
 
-        /* Large desktop: a bit tighter if desired */
+        /* Large desktop: slightly tighter */
         @media (min-width: 1200px) {
             .gallery-carousel .carousel-cell {
                 width: 28%;
@@ -702,14 +694,13 @@
                 contain: true,
                 wrapAround: true,
                 imagesLoaded: true,
-                // Lazy-load next/prev image candidates (works with data-flickity-lazyload; we’re just using browser lazy="lazy" here)
                 pageDots: true,
-                prevNextButtons: true,           // will be hidden on small screens below
+                prevNextButtons: true,   // will be toggled off on small screens
                 draggable: true,
                 groupCells: function(width){
-                    if (width < 576) return 1;     // mobile
-                    if (width < 992) return 2;     // tablet
-                    return 3;                      // desktop+
+                    if (width < 576) return 1;  // mobile
+                    if (width < 992) return 2;  // tablet
+                    return 3;                   // desktop+
                 }
             });
 
@@ -721,7 +712,6 @@
 
             // 4) (Re)bind GLightbox now that slides exist
             if (window.GLightbox) {
-                // If you already have a GLightbox instance, destroy/recreate to pick up new anchors.
                 if (window.__galleryLightbox) { try { window.__galleryLightbox.destroy(); } catch(e){} }
                 window.__galleryLightbox = GLightbox({ selector: '#gallery-carousel .glightbox' });
             }
