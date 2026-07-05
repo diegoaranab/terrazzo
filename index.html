@@ -141,16 +141,26 @@
             object-fit: cover;
         }
 
+        .hero .hero-img {
+            z-index: 0;
+        }
+
+        .hero video {
+            z-index: 1;
+        }
+
         .hero::after {
             content: '';
             position: absolute;
             inset: 0;
+            z-index: 2;
             background: linear-gradient(180deg, rgba(12, 16, 67, .6) 0%, rgba(12, 16, 67, .95) 75%);
+            pointer-events: none;
         }
 
         .hero-content {
             position: relative;
-            z-index: 10;
+            z-index: 3;
             max-width: 700px;
             padding: 1rem;
         }
@@ -313,7 +323,8 @@
   HERO
 ================================================= -->
     <section class="hero">
-        <video src="/terrazzo/assets/hero.mp4" autoplay muted loop playsinline></video>
+        <video src="/terrazzo/assets/hero.mp4" poster="/terrazzo/assets/gallery/interior-venue-9.webp" preload="auto"
+            autoplay muted loop playsinline></video>
         <!-- Fallback image for browsers with video disabled -->
         <img src="/terrazzo/assets/gallery/interior-venue-9.webp" alt="" class="hero-img">
         <div class="hero-content">
