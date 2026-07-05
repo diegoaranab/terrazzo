@@ -74,6 +74,8 @@ El script revisa campos requeridos, IDs duplicados, categorías válidas del men
 
 Las imágenes PNG del menú actualmente generan advertencias solamente y no bloquean la validación.
 
+Pull requests ejecutan un workflow de GitHub Actions que corre esta validación de contenido y confirma que el CLI del optimizador de imágenes esté disponible. Si falla, corregir el JSON o las rutas de contenido antes de hacer merge.
+
 ### Menú
 
 Cada elemento de `assets/menu.json` representa un producto del menú:
