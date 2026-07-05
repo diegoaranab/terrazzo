@@ -1,0 +1,6 @@
+node_modules/
+_incoming/
+_raw/
+_exports/
+.DS_Store
+*.log

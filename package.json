@@ -1,0 +1,13 @@
+{
+  "name": "terrazzo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static MVP website for Terrazzo Urban Food & Drinks on GitHub Pages.",
+  "type": "module",
+  "scripts": {
+    "optimize:images": "node scripts/optimize-images.mjs"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.3"
+  }
+}
