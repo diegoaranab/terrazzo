@@ -56,7 +56,7 @@ En este MVP estático, el contenido principal se mantiene desde archivos JSON es
 
 Antes de una demo, grabación o entrega de avance, usar el [checklist manual de QA y demo](docs/demo-qa-checklist.md) para revisar desktop, mobile y el flujo de pedido por WhatsApp.
 
-Para pagos en línea futuros, revisar el [plan de arquitectura de pagos](docs/payment-architecture-plan.md). Es un documento de planeación y no una funcionalidad implementada en el MVP actual.
+Para pagos en línea futuros, revisar el [plan de arquitectura de pagos](docs/payment-architecture-plan.md) y la [investigación de proveedor de pagos](docs/payment-provider-research.md). Son documentos de planeación y no funcionalidades implementadas en el MVP actual.
 
 Archivos actuales de contenido:
 
