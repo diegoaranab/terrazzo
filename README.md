@@ -1,6 +1,6 @@
 # Terrazzo
 
-Static MVP website for Terrazzo Urban Food & Drinks in Tehuacan, Puebla, served directly from GitHub Pages.
+Static MVP website for Terrazzo Urban Food & Drinks in Tehuacán, Puebla, served directly from GitHub Pages.
 
 ## Development
 
@@ -14,7 +14,7 @@ This project does not use a frontend build step. Site files are served directly 
 
 ## Image Optimization
 
-Use the image optimization pipeline when adding future raw photos or artwork. This PR only adds tooling and documentation; it does not change the current site behavior, UI, cart, carousel behavior, gallery behavior, or content.
+Use the image optimization pipeline when adding future raw photos or artwork. This workflow generates optimized WebP files without changing the current site behavior, UI, cart, carousel behavior, gallery behavior, or content.
 
 Place raw images in one of these gitignored folders:
 
@@ -62,7 +62,7 @@ Archivos actuales de contenido:
 
 Importante para GitHub Pages: las rutas de imágenes deben conservar el prefijo `/terrazzo/...`. Por ejemplo: `/terrazzo/assets/gallery/foto.webp`.
 
-### Menu
+### Menú
 
 Cada elemento de `assets/menu.json` representa un producto del menú:
 
@@ -83,6 +83,8 @@ Categorías válidas actuales:
 
 Si se agrega una categoría nueva en `assets/menu.json`, también se deben actualizar los botones de filtro en `index.html` para que la nueva categoría pueda seleccionarse en el sitio.
 
+Nota: actualmente varias imágenes del menú todavía viven como PNG directamente bajo `assets/`. Si se optimizan o reemplazan en el futuro, preferir WebP y una ruta más organizada como `/terrazzo/assets/menu/alitas-buffalo.webp`.
+
 Ejemplo:
 
 ```json
@@ -92,7 +94,7 @@ Ejemplo:
     "name": "Buffalo",
     "description": "Clásica salsa búfalo con mantequilla",
     "price": 105,
-    "img": "/terrazzo/assets/buffalo.png"
+    "img": "/terrazzo/assets/menu/alitas-buffalo.webp"
 }
 ```
 
@@ -120,7 +122,7 @@ Ejemplo:
 }
 ```
 
-### Galeria
+### Galería
 
 Cada elemento de `assets/gallery.json` representa una imagen de la galería:
 
@@ -140,7 +142,7 @@ Ejemplo:
 }
 ```
 
-### Flujo de Imagenes
+### Flujo de Imágenes
 
 Para agregar o reemplazar imágenes, usar el pipeline existente de optimización:
 
