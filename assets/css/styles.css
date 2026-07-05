@@ -1,0 +1,292 @@
+        /* ----------  Brand Tokens ----------------- */
+        :root {
+            --space-navy: #0c1043;
+            --nebula-purple: #4e4cc7;
+            --plasma-magenta: #b620ff;
+            --neon-aqua: #39ffeb;
+            --cosmic-yellow: #ffb80c;
+            --concrete-grey: #bbbbbf;
+            --pure-white: #ffffff;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--space-navy);
+            color: var(--pure-white);
+        }
+
+        h1,
+        h2,
+        h3,
+        .display-font {
+            font-family: 'Bebas Neue', 'Anton', sans-serif;
+            letter-spacing: .5px;
+        }
+
+        a,
+        .link-aqua {
+            color: var(--neon-aqua);
+        }
+
+        .btn-cta {
+            background: var(--cosmic-yellow);
+            color: var(--space-navy);
+            font-weight: 600;
+            border: none;
+        }
+
+        .btn-cta:hover {
+            background: var(--plasma-magenta);
+            color: #fff;
+        }
+
+        /* --------------  Image ratio helper -------------- */
+        .object-fit-cover {
+            object-fit: cover;
+        }
+
+        /* ---- Flickity skin tuned to Terrazzo ---- */
+        @media (max-width: 767.98px) {
+
+            /* every slide ≈80 % of the viewport so neighbours “peek in” */
+            .carousel-cell {
+                width: 80%;
+                margin: 0 .75rem;
+            }
+
+            /* page-dots a little lower */
+            .flickity-page-dots {
+                margin-top: .75rem;
+            }
+
+            .flickity-page-dots .dot {
+                width: 8px;
+                height: 8px;
+                margin: 0 4px;
+                background: var(--neon-aqua);
+                opacity: .4;
+            }
+
+            .flickity-page-dots .dot.is-selected {
+                opacity: 1;
+            }
+
+            /* arrow icons should you enable prev/next later */
+            .flickity-button-icon {
+                fill: var(--pure-white);
+            }
+
+            /* When a .row becomes a Flickity slider, neutralize the grid layout */
+            .flickity-enabled.row {
+                display: block !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            /* Each slide should be a fixed-width cell, not a flex column */
+            .flickity-enabled .carousel-cell {
+                flex: 0 0 auto !important;
+                width: 80% !important;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+                box-sizing: border-box;
+            }
+        }
+
+
+
+        /* ----------  Hero ----------------- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 680px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero video,
+        .hero .hero-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero .hero-img {
+            z-index: 0;
+        }
+
+        .hero video {
+            z-index: 1;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            background: linear-gradient(180deg, rgba(12, 16, 67, .6) 0%, rgba(12, 16, 67, .95) 75%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 700px;
+            padding: 1rem;
+        }
+
+        /* ----------  Promo Ticker ------------- */
+        .ticker {
+            overflow: hidden;
+            background: var(--nebula-purple);
+            white-space: nowrap;
+        }
+
+        .ticker-track {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 45s linear infinite;
+        }
+
+        .ticker-item {
+            display: inline-block;
+            padding: .75rem 1.5rem;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+
+        /* ----------  Menu Filter ------------- */
+        .filter-btns .btn {
+            margin: .25rem;
+        }
+
+        /* Card layout + 3-line clamp so heights are consistent */
+        .menu-card {
+            background: #1a1c2c;
+            border: none;
+            transition: transform .25s;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-4px);
+        }
+
+        /* image stays natural */
+        .menu-card .ratio {
+            flex-shrink: 0;
+        }
+
+        /* body grows to fill the space, pushing footer down */
+        .menu-card .card-body {
+            flex: 1 1 auto;
+            overflow: hidden;
+            /* if description is too long */
+        }
+
+        /* footer always at bottom */
+        .menu-card .card-footer {
+            flex-shrink: 0;
+        }
+
+        /* clamp descriptions to 3 lines */
+        .menu-card .card-text {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            overflow: hidden;
+        }
+
+
+
+
+
+
+
+        /* ===== Gallery carousel (Flickity) ===== */
+        .gallery-carousel .carousel-cell { width: 80%; margin: 0 .75rem; }
+        @media (min-width: 576px) { .gallery-carousel .carousel-cell { width: 45%; } }
+        @media (min-width: 992px) { .gallery-carousel .carousel-cell { width: 30%; } }
+        @media (min-width: 1200px){ .gallery-carousel .carousel-cell { width: 28%; } }
+
+        /* Fixed-height frame so every slide is uniform */
+        .gallery-carousel .carousel-frame{
+          width: 100%;
+          aspect-ratio: 4 / 3;            /* pick 16/9 if you prefer wider */
+          border-radius: .5rem;
+          overflow: hidden;
+          background: #0e123b;            /* subtle placeholder color */
+        }
+
+        /* Image fills the frame cleanly */
+        .gallery-carousel .carousel-frame img{
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        /* Dots (keep your brand look) */
+        .gallery-carousel .flickity-page-dots{ margin-top: 1rem; }
+        .gallery-carousel .flickity-page-dots .dot{ width: 8px; height: 8px; margin: 0 4px; opacity: .4; }
+        .gallery-carousel .flickity-page-dots .dot.is-selected{ opacity: 1; }
+
+        /* === Cart (Carrito) UI ==================================================== */
+        .cart-fab {
+          position: fixed; right: 16px; bottom: 16px; z-index: 1100;
+          background: var(--cosmic-yellow); color: var(--space-navy);
+          border: none; border-radius: 999px; padding: 0.75rem 1rem;
+          box-shadow: 0 10px 24px rgba(0,0,0,.35);
+          display: flex; align-items: center; gap: .5rem; font-weight: 700;
+        }
+        .cart-fab:hover { background: var(--plasma-magenta); color:#fff; }
+
+        .cart-count-badge{
+          min-width: 1.6rem; height: 1.6rem; border-radius: 999px;
+          background: var(--space-navy); color: #fff; display:inline-flex;
+          align-items:center; justify-content:center; font-size:.85rem;
+        }
+
+        .offcanvas-terrazzo {
+          background: #0b0e2e; color: var(--pure-white);
+          border-left: 1px solid rgba(255,255,255,.08);
+        }
+        .cart-line + .cart-line { border-top: 1px dashed rgba(255,255,255,.15); }
+        .cart-line {
+          display:grid; grid-template-columns: 1fr auto; gap:.5rem; padding:.75rem 0;
+        }
+        .cart-line-title { font-weight:600; }
+        .cart-qty-wrap { display:flex; align-items:center; gap:.5rem; }
+        .qty-btn {
+          width: 2rem; height: 2rem; border-radius: .5rem; border: 0;
+          background: var(--nebula-purple); color:#fff; font-weight:700;
+        }
+        .qty-btn:hover { background: var(--plasma-magenta); }
+
+        .cart-total-row { display:flex; justify-content:space-between; font-weight:700; }
+        .cart-checkout-btn{
+          width:100%; background: var(--cosmic-yellow); color: var(--space-navy);
+          font-weight:700; border:0; padding:.75rem 1rem; border-radius:.5rem;
+        }
+        .cart-checkout-btn:hover { background: var(--plasma-magenta); color:#fff; }
+
