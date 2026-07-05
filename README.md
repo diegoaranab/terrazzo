@@ -62,6 +62,18 @@ Archivos actuales de contenido:
 
 Importante para GitHub Pages: las rutas de imágenes deben conservar el prefijo `/terrazzo/...`. Por ejemplo: `/terrazzo/assets/gallery/foto.webp`.
 
+### Validación de Contenido
+
+Después de editar `assets/menu.json`, `assets/events.json` o `assets/gallery.json`, validar el contenido con:
+
+```bash
+npm run validate:content
+```
+
+El script revisa campos requeridos, IDs duplicados, categorías válidas del menú, rutas de imágenes y texto alternativo significativo en galería.
+
+Las imágenes PNG del menú actualmente generan advertencias solamente y no bloquean la validación.
+
 ### Menú
 
 Cada elemento de `assets/menu.json` representa un producto del menú:

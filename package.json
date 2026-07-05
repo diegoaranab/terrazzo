@@ -5,7 +5,8 @@
   "description": "Static MVP website for Terrazzo Urban Food & Drinks on GitHub Pages.",
   "type": "module",
   "scripts": {
-    "optimize:images": "node scripts/optimize-images.mjs"
+    "optimize:images": "node scripts/optimize-images.mjs",
+    "validate:content": "node scripts/validate-content.mjs"
   },
   "devDependencies": {
     "sharp": "^0.34.3"
