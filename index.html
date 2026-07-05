@@ -315,7 +315,7 @@
     <section class="hero">
         <video src="/terrazzo/assets/hero.mp4" autoplay muted loop playsinline></video>
         <!-- Fallback image for browsers with video disabled -->
-        <img src="/assets/hero-fallback.jpg" alt="" class="hero-img">
+        <img src="/terrazzo/assets/gallery/interior-venue-9.webp" alt="" class="hero-img">
         <div class="hero-content">
             <h1 class="display-3 fw-bold">Del universo al mundo<br><small class="h4 fw-light">vive la
                     experiencia</small></h1>
@@ -817,45 +817,50 @@
             const container = document.getElementById('gallery-carousel');
             if (!container) return;
 
-            // venue1.jpg … venue9.jpg
-            const sources = Array.from({ length: 9 }, (_, i) => `/terrazzo/assets/venue${i+1}.jpg`);
-
-            container.innerHTML = sources.map((src, idx) => `
+            fetch('/terrazzo/assets/gallery.json')
+                .then(res => {
+                    if (!res.ok) throw new Error(`Gallery JSON load failed: ${res.status}`);
+                    return res.json();
+                })
+                .then(items => {
+                    container.innerHTML = items.map((item, idx) => `
   <div class="carousel-cell">
-    <a href="${src}" class="glightbox" data-gallery="terrazzo" aria-label="Abrir imagen ${idx+1} de ${sources.length}">
+    <a href="${item.src}" class="glightbox" data-gallery="terrazzo" aria-label="Abrir imagen ${idx+1} de ${items.length}">
       <div class="carousel-frame">
-        <img src="${src}" alt="Terrazzo — vista del lugar ${idx+1}" loading="lazy" decoding="async">
+        <img src="${item.src}" alt="${item.alt}" loading="lazy" decoding="async">
       </div>
     </a>
   </div>
 `).join('');
 
-            // IMPORTANT: re-bind GLightbox now that slides exist
-            if (window.galleryLightbox) { window.galleryLightbox.destroy(); }
-            window.galleryLightbox = GLightbox({ selector: '.glightbox' });
+                    // IMPORTANT: re-bind GLightbox now that slides exist
+                    if (window.galleryLightbox) { window.galleryLightbox.destroy(); }
+                    window.galleryLightbox = GLightbox({ selector: '.glightbox' });
 
-            const flkty = new Flickity(container, {
-                cellSelector: '.carousel-cell',
-                cellAlign: 'center',
-                contain: true,
-                wrapAround: true,
-                imagesLoaded: true,
-                pageDots: true,
-                prevNextButtons: true,
-                draggable: true,
-                groupCells: function(width){
-                    if (width < 576) return 1;   // mobile
-                    if (width < 992) return 2;   // tablet
-                    return 3;                    // desktop+
-                }
-            });
-            flkty.resize(); // ensure correct height on first paint
+                    const flkty = new Flickity(container, {
+                        cellSelector: '.carousel-cell',
+                        cellAlign: 'center',
+                        contain: true,
+                        wrapAround: true,
+                        imagesLoaded: true,
+                        pageDots: true,
+                        prevNextButtons: true,
+                        draggable: true,
+                        groupCells: function(width){
+                            if (width < 576) return 1;   // mobile
+                            if (width < 992) return 2;   // tablet
+                            return 3;                    // desktop+
+                        }
+                    });
+                    flkty.resize(); // ensure correct height on first paint
 
-            // hide arrows on very small screens, keep dots
-            const mqSmall = window.matchMedia('(max-width: 575.98px)');
-            function toggleArrows(e){ flkty.options.prevNextButtons = !e.matches; flkty.updateSize(); }
-            mqSmall.addEventListener ? mqSmall.addEventListener('change', toggleArrows) : mqSmall.addListener(toggleArrows);
-            toggleArrows(mqSmall);
+                    // hide arrows on very small screens, keep dots
+                    const mqSmall = window.matchMedia('(max-width: 575.98px)');
+                    function toggleArrows(e){ flkty.options.prevNextButtons = !e.matches; flkty.resize(); }
+                    mqSmall.addEventListener ? mqSmall.addEventListener('change', toggleArrows) : mqSmall.addListener(toggleArrows);
+                    toggleArrows(mqSmall);
+                })
+                .catch(err => console.error('Gallery JSON load error:', err));
 
         }
 
