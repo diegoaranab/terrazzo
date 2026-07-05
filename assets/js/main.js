@@ -63,6 +63,33 @@
           return {items, total};
         }
         function formatCurrency(n){ return 'MX$ ' + (Number(n)||0).toLocaleString('es-MX'); }
+        function generateOrderCode(){
+          return `TER-${Math.floor(1000 + Math.random() * 9000)}`;
+        }
+        function buildWhatsAppMessage(orderCode){
+          const { total } = cartTotals();
+          const lines = CART.map(it => {
+            const price = Number(it.price) || 0;
+            const subtotal = it.qty * price;
+            return `• ${it.qty} × ${it.name} — ${formatCurrency(price)} c/u = ${formatCurrency(subtotal)}`;
+          }).join('\n');
+
+          return [
+            'Hola, quiero hacer un pedido en Terrazzo.',
+            '',
+            `Código de pedido: ${orderCode}`,
+            '',
+            'Pedido:',
+            lines,
+            '',
+            `Total estimado: ${formatCurrency(total)}`,
+            'Forma de pago: Transferencia',
+            '',
+            'Entiendo que el total final se confirma por WhatsApp y que el pedido inicia cuando se confirme la transferencia.',
+            '',
+            'Envío este pedido desde el sitio web de Terrazzo.'
+          ].join('\n');
+        }
 
         // fetch(menuURL)
         //     .then(res => res.json())
@@ -167,11 +194,8 @@
         /* Checkout to WhatsApp (Spanish message) */
         checkoutBtn.addEventListener('click', ()=>{
           if(CART.length === 0) return;
-          const { total } = cartTotals();
-          const lines = CART.map(it => `• ${it.qty} × ${it.name} — ${formatCurrency(it.price)} c/u = ${formatCurrency(it.qty * it.price)}`).join('%0A');
-          const msg =
-            `Hola, me gustaría ordenar:%0A%0A${lines}%0A%0ATotal: ${formatCurrency(total)}%0A%0AEnvío este pedido desde el sitio de Terrazzo.`;
-          const url = `https://wa.me/${PHONE_WA}?text=${msg}`;
+          const message = buildWhatsAppMessage(generateOrderCode());
+          const url = `https://wa.me/${PHONE_WA}?text=${encodeURIComponent(message)}`;
           // Clear cart immediately so it resets even if user returns
           clearCart();
           // go to WhatsApp
