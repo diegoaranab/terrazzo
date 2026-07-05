@@ -1,0 +1,77 @@
+[
+    {
+        "id": "ambiente-venue-1",
+        "src": "/terrazzo/assets/gallery/ambiente-venue-1.webp",
+        "alt": "Ambiente de fiesta en Terrazzo"
+    },
+    {
+        "id": "ambiente-venue-2",
+        "src": "/terrazzo/assets/gallery/ambiente-venue-2.webp",
+        "alt": "Clientes disfrutando la experiencia Terrazzo"
+    },
+    {
+        "id": "ambiente-venue-3",
+        "src": "/terrazzo/assets/gallery/ambiente-venue-3.webp",
+        "alt": "Noche con ambiente en Terrazzo"
+    },
+    {
+        "id": "ambiente-venue-4",
+        "src": "/terrazzo/assets/gallery/ambiente-venue-4.webp",
+        "alt": "Mesa y convivencia en Terrazzo"
+    },
+    {
+        "id": "ambiente-venue-5",
+        "src": "/terrazzo/assets/gallery/ambiente-venue-5.webp",
+        "alt": "Experiencia social en Terrazzo"
+    },
+    {
+        "id": "comida-bebida-venue-6",
+        "src": "/terrazzo/assets/gallery/comida-bebida-venue-6.webp",
+        "alt": "Comida y bebidas en Terrazzo"
+    },
+    {
+        "id": "interior-venue-9",
+        "src": "/terrazzo/assets/gallery/interior-venue-9.webp",
+        "alt": "Interior de Terrazzo con pantallas"
+    },
+    {
+        "id": "bar-drinks-tv",
+        "src": "/terrazzo/assets/gallery/bar-drinks-tv.webp",
+        "alt": "Barra, bebidas y pantalla en Terrazzo"
+    },
+    {
+        "id": "food-drinks-bar",
+        "src": "/terrazzo/assets/gallery/food-drinks-bar.webp",
+        "alt": "Comida y drinks en la barra de Terrazzo"
+    },
+    {
+        "id": "interior-burgers-table",
+        "src": "/terrazzo/assets/gallery/interior-burgers-table.webp",
+        "alt": "Mesa con burgers dentro de Terrazzo"
+    },
+    {
+        "id": "branded-drinks",
+        "src": "/terrazzo/assets/gallery/branded-drinks.webp",
+        "alt": "Bebidas con identidad Terrazzo"
+    },
+    {
+        "id": "cocktail-closeup",
+        "src": "/terrazzo/assets/gallery/cocktail-closeup.webp",
+        "alt": "Coctel servido en Terrazzo"
+    },
+    {
+        "id": "sandwich-closeup",
+        "src": "/terrazzo/assets/gallery/sandwich-closeup.webp",
+        "alt": "Comida preparada en Terrazzo"
+    },
+    {
+        "id": "wings-action",
+        "src": "/terrazzo/assets/gallery/wings-action.webp",
+        "alt": "Alitas y comida estilo Terrazzo"
+    },
+    {
+        "id": "cocktail-pour",
+        "src": "/terrazzo/assets/gallery/cocktail-pour.webp",
+        "alt": "Preparación de coctel en Terrazzo"
+    }
+]
