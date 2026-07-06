@@ -54,7 +54,7 @@ The `_incoming/` folder is gitignored because raw images are usually heavy and a
 
 En este MVP estático, el contenido principal se mantiene desde archivos JSON estructurados. Esto permite actualizar menú, eventos y galería sin cambiar la lógica del sitio. En una versión pagada o completa, esta misma estructura puede convertirse en un panel Admin para que una persona no técnica actualice menú, eventos y galería sin tocar código.
 
-Antes de una demo, grabación o entrega de avance, usar el [checklist manual de QA y demo](docs/demo-qa-checklist.md) para revisar desktop, mobile y el flujo de pedido por WhatsApp.
+Antes de una demo, grabación o entrega de avance, usar el [checklist manual de QA y demo](docs/demo-qa-checklist.md) para revisar desktop, mobile y el flujo de pedido por WhatsApp. Para presentar el MVP al owner sin abrir preguntas prematuras de pagos o backend, revisar el [paquete de preparación para demo comercial](docs/sales-demo-readiness.md).
 
 Para pagos en línea futuros, revisar el [plan de arquitectura de pagos](docs/payment-architecture-plan.md) y la [investigación de proveedor de pagos](docs/payment-provider-research.md). Son documentos de planeación y no funcionalidades implementadas en el MVP actual.
 
