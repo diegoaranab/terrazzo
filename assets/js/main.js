@@ -147,6 +147,16 @@
         const cartLinesEl = document.getElementById('cartLines');
         const cartTotalEl = document.getElementById('cartTotal');
         const checkoutBtn  = document.getElementById('checkoutBtn');
+        const cartDrawerEl = document.getElementById('cartDrawer');
+
+        if(cartDrawerEl){
+          cartDrawerEl.addEventListener('show.bs.offcanvas', () => {
+            document.body.classList.add('cart-drawer-open');
+          });
+          cartDrawerEl.addEventListener('hidden.bs.offcanvas', () => {
+            document.body.classList.remove('cart-drawer-open');
+          });
+        }
 
         function renderCart(){
           const {items, total} = cartTotals();
