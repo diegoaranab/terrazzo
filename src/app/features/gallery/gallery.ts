@@ -30,13 +30,21 @@ export class Gallery {
     afterRenderEffect(() => {
       const items = this.items();
       this.lightbox?.destroy();
-      // GLightbox needs its no-animation path to complete callbacks when CSS disables motion.
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const reducedMotionOptions = reducedMotion ? {
+        openEffect: 'none' as const,
+        closeEffect: 'none' as const,
+        slideEffect: 'none' as const,
+        // GLightbox 3.3.1 forces slideEffect='slide' for mobile UAs.
+        // Remap both slide directions so its animation callbacks still complete.
+        cssEfects: {
+          slide: { in: 'none', out: 'none' },
+          slideBack: { in: 'none', out: 'none' }
+        }
+      } : {};
       this.lightbox = GLightbox({
         elements: items.map(item => ({ href: item.src, type: 'image', alt: item.alt })),
-        openEffect: reducedMotion ? 'none' : 'zoom',
-        closeEffect: reducedMotion ? 'none' : 'zoom',
-        slideEffect: reducedMotion ? 'none' : 'slide'
+        ...reducedMotionOptions
       });
     });
     inject(DestroyRef).onDestroy(() => this.lightbox?.destroy());
