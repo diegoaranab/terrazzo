@@ -8,12 +8,12 @@ import { MenuCard } from './menu-card';
 @Component({
   selector: 'tz-menu', imports: [Carousel, MenuCard],
   template: `
-    <section id="interactive-menu" class="container py-5">
-      <h2 class="text-center mb-4">Menú</h2>
-      <div class="text-center filter-btns mb-4">
+    <section id="interactive-menu" class="container section-space menu-section">
+      <div class="section-heading"><div><p class="eyebrow">Food &amp; drinks</p><h2>El menú</h2></div><p>Burgers, alitas, jochos, nachos y coctelería.</p></div>
+      <div class="filter-btns" role="group" aria-label="Categorías del menú">
         @for (category of categories; track category.id) {
           <button class="btn btn-outline-light" [class.active]="selected() === category.id"
-            [attr.data-filter]="category.id" (click)="select(category.id)">{{ category.label }}</button>
+            [attr.aria-pressed]="selected() === category.id" [attr.data-filter]="category.id" (click)="select(category.id)">{{ category.label }}</button>
         }
       </div>
       <div class="row g-4" id="menu-grid" [tzCarousel]="carouselContent()">

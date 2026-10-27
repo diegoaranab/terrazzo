@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
     <div class="ticker"><div class="ticker-track">
       @for (copy of [0, 1]; track copy) {
         @for (promotion of promotions; track promotion) {
-          <span class="ticker-item">{{ promotion }}</span>
+          <span class="ticker-item" [attr.aria-hidden]="copy === 1 ? true : null">{{ promotion }}</span>
         }
       }
     </div></div>`

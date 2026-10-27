@@ -7,8 +7,8 @@ import { Carousel } from '../../shared/carousel';
 @Component({
   selector: 'tz-gallery', imports: [Carousel],
   template: `
-    <section class="container py-5" id="gallery" aria-label="Galería">
-      <h2 class="text-center mb-4">Galería</h2>
+    <section class="container section-space gallery-section" id="gallery" aria-label="Galería">
+      <div class="section-heading"><div><p class="eyebrow">Dentro de Terrazzo</p><h2>Así se vive</h2></div><p>Explora la galería. Aquí está el ambiente.</p></div>
       <div id="gallery-carousel" class="gallery-carousel" role="region" aria-roledescription="carousel"
         aria-label="Fotos del lugar" [tzCarousel]="items()" [gallery]="true">
         @for (item of items(); track item.id; let index = $index) {

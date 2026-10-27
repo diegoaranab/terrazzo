@@ -113,6 +113,8 @@ After Angular parity is merged:
 
 ## PR #24 — Brand, UI/UX and media polish
 
+Implementation and validation: [brand/UI polish review](brand-ui-polish.md); future product media: [menu image refresh plan](menu-image-refresh-plan.md).
+
 - Rebalance the visual identity toward the real venue: dark/charcoal foundation, real photography and neon accents rather than large synthetic cosmic surfaces.
 - Preserve the recognizable Terrazzo cosmic/urban identity.
 - Audit menu imagery using three outcomes: keep / replace with real photo / regenerate.
