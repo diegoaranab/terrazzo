@@ -1,44 +1,37 @@
 [
     {
-        "id": "mundial-2026",
-        "title": "Mundial 2026 en Terrazzo",
-        "date": "11 jun – 19 jul 2026",
-        "description": "Partidos del Mundial en pantalla grande: reserva mesa, pide burgers, alitas o drinks y vive cada juego con ambiente Terrazzo.",
-        "img": "assets/events/mundial-2026.webp"
-    },
-    {
-        "id": "transmisiones-deportivas",
+        "id": "partidos-en-vivo",
         "title": "Partidos en vivo",
-        "date": "Días de juego · desde 13:00 h",
-        "description": "Transmisiones deportivas, finales y partidos especiales con pantalla, comida, drinks y promos durante el juego.",
-        "img": "assets/events/transmisiones-deportivas.webp"
+        "date": "Consulta transmisiones por WhatsApp",
+        "description": "Disfruta los deportes en nuestras pantallas con comida, drinks y ambiente Terrazzo.",
+        "img": "assets/gallery/interior-venue-9.webp"
     },
     {
-        "id": "aniversario-terrazzo",
-        "title": "8 años Terrazzo",
-        "date": "Evento pasado · aniversario",
-        "description": "Celebración de aniversario de Terrazzo: música, drinks, comida y una noche pensada para celebrar con la banda.",
-        "img": "assets/events/aniversario-terrazzo.webp"
+        "id": "noches-tematicas",
+        "title": "Noches temáticas",
+        "date": "Consulta próximas fechas por WhatsApp",
+        "description": "Música, amigos y noches especiales para vivir la experiencia Terrazzo.",
+        "img": "assets/gallery/ambiente-venue-1.webp"
     },
     {
-        "id": "noche-badnys",
-        "title": "Noche de Bandidas",
-        "date": "Evento pasado · noche temática",
-        "description": "Una noche de música, drinks y ambiente nocturno para venir con amigos y vivir el desmadre Terrazzo.",
-        "img": "assets/events/noche-badnys.webp"
+        "id": "celebraciones",
+        "title": "Celebraciones y eventos especiales",
+        "date": "Cuéntanos tu plan por WhatsApp",
+        "description": "Reúne a tu gente y consulta las opciones para celebrar en Terrazzo.",
+        "img": "assets/gallery/ambiente-venue-4.webp"
     },
     {
-        "id": "burgers-promo",
-        "title": "Martes de Burgers",
-        "date": "Martes · burgers $70 c/u",
-        "description": "Promo de burgers para armar plan entre semana: comida, mesa con amigos y drinks para acompañar.",
-        "img": "assets/events/burgers-promo.webp"
+        "id": "burgers-food",
+        "title": "Burgers & food",
+        "date": "Explora nuestro menú",
+        "description": "Burgers, alitas, jochos y nachos para compartir el plan con tu banda.",
+        "img": "assets/gallery/interior-burgers-table.webp"
     },
     {
-        "id": "chelas-promo",
-        "title": "Lunes de Chelas",
-        "date": "Lunes · medias 2 × $40",
-        "description": "Chelas de media en promo para arrancar la semana con barra fría, botana y ambiente Terrazzo.",
-        "img": "assets/events/chelas-promo.webp"
+        "id": "drinks-mixologia",
+        "title": "Drinks & mixología",
+        "date": "Conoce nuestra coctelería",
+        "description": "Descubre los drinks de la casa y acompaña tu visita con el sabor Terrazzo.",
+        "img": "assets/gallery/cocktail-closeup.webp"
     }
 ]

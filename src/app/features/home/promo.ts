@@ -13,11 +13,11 @@ import { Component } from '@angular/core';
 })
 export class Promo {
   readonly promotions = [
-    '🍻 Lunes chelas de media 2×$40',
-    '🍔 Martes de Burgers $70 c/u',
-    '🌭 Miércoles Jocho o Nachos + Tarro Monster $110',
-    '🍗 Jueves de Alitas $7 c/u',
-    '🍸 Jueves de mixología: Gina / Mojito / Carajillo $50',
-    '🥃 Viernes 3 mezcales $50'
+    '🍔 Burgers, alitas, jochos y nachos',
+    '🍸 Drinks y mixología',
+    '⚽ Partidos y deportes',
+    '🎶 Música y noches especiales',
+    '📲 Reserva o pedidos por WhatsApp',
+    '✨ #Vivelaexperiencia'
   ];
 }

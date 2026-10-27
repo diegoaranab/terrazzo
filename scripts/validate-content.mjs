@@ -70,7 +70,7 @@ async function validateFile({ filePath, validate }) {
   console.log(`✅ ${filePath} passed`);
 }
 
-function validateMenu(items, filePath, errors, warnings) {
+function validateMenu(items, filePath, errors) {
   const seenIds = new Set();
 
   items.forEach((item, index) => {
@@ -103,14 +103,10 @@ function validateMenu(items, filePath, errors, warnings) {
     if (!isNonEmptyString(item.img)) {
       errors.push(`${filePath} item ${label}: "img" must be a non-empty string`);
     } else {
-      if (!item.img.startsWith('assets/')) {
-        errors.push(`${filePath} item ${label}: "img" must start with assets/`);
+      if (!/^assets\/menu\/[^/\\]+\.webp$/.test(item.img)) {
+        errors.push(`${filePath} item ${label}: "img" must be a WebP file under assets/menu/`);
       } else {
         validateReferencedAssetExists(item.img, filePath, label, 'img', errors);
-      }
-
-      if (!hasExtension(item.img, '.webp')) {
-        warnings.push(`${filePath} item ${label}: image is ${extensionName(item.img)}; WebP recommended for future optimization`);
       }
     }
   });
@@ -142,8 +138,8 @@ function validateEvents(items, filePath, errors) {
     if (!isNonEmptyString(item.img)) {
       errors.push(`${filePath} item ${label}: "img" must be a non-empty string`);
     } else {
-      if (!item.img.startsWith('assets/events/')) {
-        errors.push(`${filePath} item ${label}: "img" must start with assets/events/`);
+      if (!/^assets\/(events|gallery)\//.test(item.img)) {
+        errors.push(`${filePath} item ${label}: "img" must start with assets/events/ or assets/gallery/`);
       } else {
         validateReferencedAssetExists(item.img, filePath, label, 'img', errors);
       }
@@ -239,11 +235,6 @@ function isNonEmptyString(value) {
 
 function hasExtension(filePath, extension) {
   return path.extname(filePath).toLowerCase() === extension;
-}
-
-function extensionName(filePath) {
-  const extension = path.extname(filePath).replace('.', '').toUpperCase();
-  return extension || 'not WebP';
 }
 
 function normalizeText(value) {
