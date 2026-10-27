@@ -13,7 +13,10 @@ _Last updated: 2026-10-27_
 - ✅ Main merge commit: `c2f4ee9bd333292f6b60ed648c3e048d26609fe1`.
 - ✅ Sharp tooling upgraded to stable 0.35.5; media budgets enforced in CI.
 - ✅ Validate Storefront and GitHub Pages deployment passed on the PR #23 merge commit.
-- ➡️ Next: PR #24 — Brand, UI/UX and media polish.
+- ✅ PR #24 — Brand, UI/UX and media polish merged on 2026-10-27.
+- ✅ Main merge commit: `2b68a5252b700f98f2d2de9f09d08d0685917c9d`.
+- ✅ Final PR #24 CI and GitHub Pages deployment passed on `main`.
+- ➡️ Next: final demo QA, physical-device check, owner content confirmation, and menu-media decisions.
 
 
 ## Purpose
@@ -111,7 +114,7 @@ After Angular parity is merged:
 - Review bundle and initial network payload.
 - Preserve storefront behavior.
 
-## PR #24 — Brand, UI/UX and media polish
+## PR #24 — Brand, UI/UX and media polish ✅ MERGED
 
 Implementation and validation: [brand/UI polish review](brand-ui-polish.md); future product media: [menu image refresh plan](menu-image-refresh-plan.md).
 
@@ -327,4 +330,4 @@ Cost model should include:
 
 # Immediate next action
 
-Execute **PR #24 — Brand, UI/UX and media polish** from the latest `main`. Confirm owner content items before final recording/launch. Admin, backend, payments, POS and AI remain later phases.
+Run final demo QA from the latest `main`, including at least one real mobile device. Confirm owner content items before final recording/launch and decide whether menu imagery needs an additional pre-demo refresh. Admin, backend, payments, POS and AI remain later phases.
