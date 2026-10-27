@@ -13,8 +13,8 @@ import { formatCurrency } from '../../core/order';
         <p class="card-text small">{{ item().description }}</p>
       </div>
       <div class="card-footer bg-transparent border-0 d-flex justify-content-between align-items-center">
-        <span class="fw-bold">{{ currency(item().price) }}</span>
-        <button class="btn btn-cta btn-sm btn-add-cart" (click)="cart.add(item())">Añadir</button>
+        <span class="menu-price">{{ currency(item().price) }}</span>
+        <button class="btn btn-cta btn-sm btn-add-cart" [attr.aria-label]="'Añadir ' + item().name + ' al carrito'" (click)="cart.add(item())">Añadir</button>
       </div>
     </div>`
 })
