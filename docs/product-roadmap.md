@@ -16,7 +16,10 @@ _Last updated: 2026-10-27_
 - ✅ PR #24 — Brand, UI/UX and media polish merged on 2026-10-27.
 - ✅ Main merge commit: `2b68a5252b700f98f2d2de9f09d08d0685917c9d`.
 - ✅ Final PR #24 CI and GitHub Pages deployment passed on `main`.
-- ➡️ Next: final demo QA, physical-device check, owner content confirmation, and menu-media decisions.
+- ✅ PR #25 — Final demo hardening merged on 2026-10-27.
+- ✅ Main merge commit: `28243b88283ee224d4303dbf618c998c73c2beff`.
+- ✅ Gallery GLightbox reduced-motion/mobile lifecycle bug fixed; final CI and GitHub Pages deployment passed.
+- ➡️ Next: live manual recheck of the gallery fix, then final recording QA, owner content confirmation, and menu-media decision.
 
 
 ## Purpose
@@ -330,4 +333,4 @@ Cost model should include:
 
 # Immediate next action
 
-Run final demo QA from the latest `main`, including at least one real mobile device. Confirm owner content items before final recording/launch and decide whether menu imagery needs an additional pre-demo refresh. Admin, backend, payments, POS and AI remain later phases.
+Recheck the deployed gallery lightbox on the latest `main`, specifically repeated next/previous navigation and close behavior on desktop and responsive/mobile. If clean, complete final recording QA on at least one real mobile device. Confirm owner content items before final recording/launch and decide whether menu imagery needs an additional pre-demo refresh. Admin, backend, payments, POS and AI remain later phases.
