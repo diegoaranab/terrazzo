@@ -30,7 +30,14 @@ export class Gallery {
     afterRenderEffect(() => {
       const items = this.items();
       this.lightbox?.destroy();
-      this.lightbox = GLightbox({ elements: items.map(item => ({ href: item.src, type: 'image', alt: item.alt })) });
+      // GLightbox needs its no-animation path to complete callbacks when CSS disables motion.
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      this.lightbox = GLightbox({
+        elements: items.map(item => ({ href: item.src, type: 'image', alt: item.alt })),
+        openEffect: reducedMotion ? 'none' : 'zoom',
+        closeEffect: reducedMotion ? 'none' : 'zoom',
+        slideEffect: reducedMotion ? 'none' : 'slide'
+      });
     });
     inject(DestroyRef).onDestroy(() => this.lightbox?.destroy());
   }
