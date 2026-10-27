@@ -9,9 +9,11 @@ _Last updated: 2026-10-27_
 - ✅ Validate Storefront workflow passed on `main`.
 - ✅ Angular GitHub Pages build + deployment passed after switching Pages Source to GitHub Actions.
 - ✅ GitHub Pages deployment reported success for `https://diegoaranab.github.io/terrazzo/`.
-- PR #23 — Content and performance refresh implemented on `phase-5b-content-performance-refresh`; pending review/merge.
-- Sharp tooling upgraded to stable 0.35.5 in PR #23; media budgets enforced in CI.
-- Next after PR #23 review/merge: PR #24 — Brand, UI/UX and media polish.
+- ✅ PR #23 — Content and performance refresh merged on 2026-10-27.
+- ✅ Main merge commit: `c2f4ee9bd333292f6b60ed648c3e048d26609fe1`.
+- ✅ Sharp tooling upgraded to stable 0.35.5; media budgets enforced in CI.
+- ✅ Validate Storefront and GitHub Pages deployment passed on the PR #23 merge commit.
+- ➡️ Next: PR #24 — Brand, UI/UX and media polish.
 
 
 ## Purpose
@@ -96,9 +98,9 @@ Technical direction:
 
 **Non-goals:** Admin, backend, payments, OpenAI, POS integration, content refresh, visual redesign, image replacement.
 
-## PR #23 — Content and performance refresh
+## PR #23 — Content and performance refresh ✅ MERGED
 
-Implementation pending review: [media measurements and validation](media-performance.md), [owner content verification](content-verification.md). Contact data remains unchanged until owner confirmation.
+Implementation complete: [media measurements and validation](media-performance.md), [owner content verification](content-verification.md). Contact data remains unchanged until owner confirmation.
 
 After Angular parity is merged:
 - Remove or demote expired event content such as World Cup 2026.
@@ -323,6 +325,4 @@ Cost model should include:
 
 # Immediate next action
 
-Review and merge **PR #23 — Content and performance refresh** after its validation passes. Confirm owner content items before final recording/launch.
-
-Start **PR #24 — Brand, UI/UX and media polish** only after PR #23 is reviewed, merged and verified on `main`. Admin, backend, payments, POS and AI remain later phases.
+Execute **PR #24 — Brand, UI/UX and media polish** from the latest `main`. Confirm owner content items before final recording/launch. Admin, backend, payments, POS and AI remain later phases.
