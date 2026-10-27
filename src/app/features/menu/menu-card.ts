@@ -7,7 +7,7 @@ import { formatCurrency } from '../../core/order';
   selector: 'tz-menu-card',
   template: `
     <div class="card menu-card h-100 my-2">
-      <div class="ratio ratio-4x3"><img [src]="item().img" class="card-img-top object-fit-cover" [alt]="item().name"></div>
+      <div class="ratio ratio-4x3"><img loading="lazy" decoding="async" [src]="item().img" class="card-img-top object-fit-cover" [alt]="item().name"></div>
       <div class="card-body">
         <h3 class="h5 card-title">{{ item().name }}</h3>
         <p class="card-text small">{{ item().description }}</p>

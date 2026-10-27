@@ -28,7 +28,7 @@ Production builds use `<base href="/terrazzo/">`. The single-page storefront doe
 
 **One-time repository-owner step:** in Settings → Pages → Build and deployment → Source, select **GitHub Actions** instead of branch publishing. Do this when reviewing/merging the Angular migration; source files alone no longer constitute the deployable site. No repository settings are changed by this code.
 
-The pull-request validation workflow installs dependencies, validates content, checks the image optimizer CLI, runs unit tests and builds production. Generated `dist/` and Angular caches are ignored.
+The pull-request validation workflow installs dependencies, validates content and asset budgets, checks the image optimizer CLI, runs unit tests and builds production. Generated `dist/` and Angular caches are ignored.
 
 ## Image Optimization
 
@@ -90,11 +90,12 @@ Después de editar `assets/menu.json`, `assets/events.json` o `assets/gallery.js
 
 ```bash
 npm run validate:content
+npm run validate:assets
 ```
 
 El script revisa campos requeridos, IDs duplicados, categorías válidas del menú, rutas de imágenes y texto alternativo significativo en galería.
 
-Las imágenes PNG del menú actualmente generan advertencias solamente y no bloquean la validación.
+Las rutas PNG del menú se rechazan. Los presupuestos de medios se validan tanto en pull requests como antes de desplegar a Pages.
 
 Pull requests ejecutan un workflow de GitHub Actions que corre esta validación de contenido, confirma que el CLI del optimizador de imágenes esté disponible y ejecuta las pruebas y el build de Angular. Si falla, corregir el JSON o las rutas de contenido antes de hacer merge.
 
@@ -107,7 +108,7 @@ Cada elemento de `assets/menu.json` representa un producto del menú:
 - `name`: nombre visible del producto.
 - `description`: descripción breve que aparece en la tarjeta del producto.
 - `price`: precio numérico, sin símbolo de pesos.
-- `img`: ruta de la imagen del producto. Debe comenzar con `assets/`.
+- `img`: ruta de la imagen del producto. Debe usar WebP bajo `assets/menu/`.
 
 Categorías válidas actuales:
 
@@ -119,7 +120,7 @@ Categorías válidas actuales:
 
 Si se agrega una categoría nueva en `assets/menu.json`, también se deben actualizar los botones de filtro en `src/app/features/menu/menu.ts` para que la nueva categoría pueda seleccionarse en el sitio.
 
-Nota: actualmente varias imágenes del menú todavía viven como PNG directamente bajo `assets/`. Si se optimizan o reemplazan en el futuro, preferir WebP y una ruta más organizada como `assets/menu/alitas-buffalo.webp`.
+Las 33 imágenes del menú usan WebP bajo `assets/menu/`. `validate:content` rechaza rutas antiguas PNG y `validate:assets` limita el hero a 12 MiB, cada imagen del menú a 300 KiB y su total a 5 MiB. Ver [mediciones y proceso](docs/media-performance.md).
 
 Ejemplo:
 
@@ -144,7 +145,7 @@ Cada elemento de `assets/events.json` representa una tarjeta de Eventos & Deport
 - `description`: texto breve que explica el evento, promo o transmisión.
 - `img`: ruta de la imagen del evento. Debe comenzar con `assets/`.
 
-En el MVP, estas tarjetas pueden mezclar eventos próximos, promociones recurrentes o ejemplos de eventos pasados. Esto ayuda a mostrar el tipo de experiencia que Terrazzo ofrece aunque no todos los eventos sean fechas futuras.
+Las tarjetas describen experiencias del lugar sin anunciar promociones ni fechas no verificadas. Pueden reutilizar fotografías existentes de `assets/gallery/` para evitar duplicar archivos. Confirmar eventos/promociones con el owner antes de publicarlos; ver [verificación de contenido](docs/content-verification.md).
 
 Ejemplo:
 
@@ -152,9 +153,9 @@ Ejemplo:
 {
     "id": "transmisiones-deportivas",
     "title": "Partidos en vivo",
-    "date": "Días de juego · desde 13:00 h",
-    "description": "Transmisiones deportivas, finales y partidos especiales con pantalla, comida, drinks y promos durante el juego.",
-    "img": "assets/events/transmisiones-deportivas.webp"
+    "date": "Consulta transmisiones por WhatsApp",
+    "description": "Disfruta los deportes en nuestras pantallas con comida, drinks y ambiente Terrazzo.",
+    "img": "assets/gallery/interior-venue-9.webp"
 }
 ```
 

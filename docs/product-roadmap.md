@@ -9,8 +9,9 @@ _Last updated: 2026-10-27_
 - ✅ Validate Storefront workflow passed on `main`.
 - ✅ Angular GitHub Pages build + deployment passed after switching Pages Source to GitHub Actions.
 - ✅ GitHub Pages deployment reported success for `https://diegoaranab.github.io/terrazzo/`.
-- ➡️ Next: PR #23 — Content and performance refresh.
-- Follow-up debt for PR #23: upgrade Sharp from 0.34.3 to a patched current release before any future untrusted upload workflow.
+- PR #23 — Content and performance refresh implemented on `phase-5b-content-performance-refresh`; pending review/merge.
+- Sharp tooling upgraded to stable 0.35.5 in PR #23; media budgets enforced in CI.
+- Next after PR #23 review/merge: PR #24 — Brand, UI/UX and media polish.
 
 
 ## Purpose
@@ -96,6 +97,8 @@ Technical direction:
 **Non-goals:** Admin, backend, payments, OpenAI, POS integration, content refresh, visual redesign, image replacement.
 
 ## PR #23 — Content and performance refresh
+
+Implementation pending review: [media measurements and validation](media-performance.md), [owner content verification](content-verification.md). Contact data remains unchanged until owner confirmation.
 
 After Angular parity is merged:
 - Remove or demote expired event content such as World Cup 2026.
@@ -320,11 +323,6 @@ Cost model should include:
 
 # Immediate next action
 
-Execute **PR #22 — Angular 22 storefront migration** from the latest `main`.
+Review and merge **PR #23 — Content and performance refresh** after its validation passes. Confirm owner content items before final recording/launch.
 
-Do not start PR #23 until PR #22 has:
-1. Passed build/tests/content validation.
-2. Been reviewed for functional parity.
-3. Had all blocking findings fixed.
-4. Been merged.
-5. Been pulled/verified as the new `main`.
+Start **PR #24 — Brand, UI/UX and media polish** only after PR #23 is reviewed, merged and verified on `main`. Admin, backend, payments, POS and AI remain later phases.

@@ -1,6 +1,6 @@
 # Checklist manual de QA y demo para owners
 
-Guía práctica para revisar el MVP estático de Terrazzo antes de una demo, grabación o entrega de avance. Usar en desktop y mobile para confirmar que la experiencia principal sigue lista sin mover pagos, backend, admin o Angular.
+Guía práctica para revisar el MVP estático de Terrazzo antes de una demo, grabación o entrega de avance. Usar en desktop y mobile para confirmar que la experiencia principal sigue lista sin ampliar el alcance a pagos, backend o Admin.
 
 ## 1. Preparación
 
@@ -15,6 +15,7 @@ npm ci
 
 ```bash
 npm run validate:content
+npm run validate:assets
 ```
 
 - Servir el sitio localmente o abrir el sitio desplegado en GitHub Pages.
@@ -69,13 +70,14 @@ npm run validate:content
 - Por ahora el contenido se edita desde archivos JSON.
 - Los pagos en línea todavía no están implementados.
 - El panel Admin todavía no está implementado.
-- El video hero necesita optimización futura porque el asset actual es pesado.
-- Algunas imágenes del menú todavía son PNG y pueden optimizarse después.
+- Confirmar los datos pendientes con el owner según [content-verification.md](content-verification.md).
+- Revalidar autoplay en dispositivos reales antes de grabar; los modos de ahorro de energía/datos pueden limitarlo.
 
 ## 6. Comandos útiles
 
 ```bash
 npm ci
 npm run validate:content
+npm run validate:assets
 npm run optimize:images -- --help
 ```

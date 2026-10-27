@@ -12,10 +12,11 @@
     "test": "ng test",
     "optimize:images": "node scripts/optimize-images.mjs",
     "validate:content": "node scripts/validate-content.mjs",
-    "test:ci": "ng test --watch=false"
+    "test:ci": "ng test --watch=false && node --test scripts/validate-assets.test.mjs",
+    "validate:assets": "node scripts/validate-assets.mjs"
   },
   "devDependencies": {
-    "sharp": "^0.34.3",
+    "sharp": "^0.35.5",
     "@angular/build": "^22.2.4",
     "@angular/cli": "^22.2.4",
     "@angular/compiler-cli": "22.2.3",

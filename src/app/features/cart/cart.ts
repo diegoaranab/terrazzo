@@ -1,5 +1,5 @@
 import { afterNextRender, Component, DestroyRef, ElementRef, inject, signal, viewChild } from '@angular/core';
-import { Offcanvas } from 'bootstrap';
+import Offcanvas from 'bootstrap/js/dist/offcanvas';
 import { CartService } from '../../core/cart.service';
 import { checkoutUrl, formatCurrency } from '../../core/order';
 
