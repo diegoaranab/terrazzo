@@ -19,7 +19,9 @@ _Last updated: 2026-10-27_
 - ✅ PR #25 — Final demo hardening merged on 2026-10-27.
 - ✅ Main merge commit: `28243b88283ee224d4303dbf618c998c73c2beff`.
 - ✅ Gallery GLightbox reduced-motion/mobile lifecycle bug fixed; final CI and GitHub Pages deployment passed.
-- ➡️ Next: live manual recheck of the gallery fix, then final recording QA, owner content confirmation, and menu-media decision.
+- ✅ Live manual gallery recheck passed on desktop and responsive/mobile after PR #25 deployment.
+- ✅ DEMO GO confirmed on 2026-10-27.
+- ➡️ Next: freeze demo features, confirm owner-dependent content if practical, then record the sales demo.
 
 
 ## Purpose
@@ -333,4 +335,4 @@ Cost model should include:
 
 # Immediate next action
 
-Recheck the deployed gallery lightbox on the latest `main`, specifically repeated next/previous navigation and close behavior on desktop and responsive/mobile. If clean, complete final recording QA on at least one real mobile device. Confirm owner content items before final recording/launch and decide whether menu imagery needs an additional pre-demo refresh. Admin, backend, payments, POS and AI remain later phases.
+Freeze demo features on the latest `main`. The deployed gallery lightbox has been manually rechecked successfully on desktop and responsive/mobile. Confirm owner-dependent content if practical before recording, then record the sales demo. Do not start Admin, backend, payments, POS or AI before owner validation.
