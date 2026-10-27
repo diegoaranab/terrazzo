@@ -5,7 +5,7 @@ import path from 'node:path';
 import process from 'node:process';
 
 const repoRoot = process.cwd();
-const siteBasePath = '/terrazzo/';
+const siteBasePath = 'assets/';
 const validMenuCategories = new Set(['hamburguesas', 'alitas', 'jochos', 'nachos', 'cocteleria']);
 const genericGalleryAlts = new Set(['foto', 'foto 1', 'imagen', 'image', 'gallery image']);
 const numberedGenericGalleryAltPattern = /^(foto|imagen|image) \d+$/;
@@ -103,8 +103,8 @@ function validateMenu(items, filePath, errors, warnings) {
     if (!isNonEmptyString(item.img)) {
       errors.push(`${filePath} item ${label}: "img" must be a non-empty string`);
     } else {
-      if (!item.img.startsWith('/terrazzo/assets/')) {
-        errors.push(`${filePath} item ${label}: "img" must start with /terrazzo/assets/`);
+      if (!item.img.startsWith('assets/')) {
+        errors.push(`${filePath} item ${label}: "img" must start with assets/`);
       } else {
         validateReferencedAssetExists(item.img, filePath, label, 'img', errors);
       }
@@ -142,8 +142,8 @@ function validateEvents(items, filePath, errors) {
     if (!isNonEmptyString(item.img)) {
       errors.push(`${filePath} item ${label}: "img" must be a non-empty string`);
     } else {
-      if (!item.img.startsWith('/terrazzo/assets/events/')) {
-        errors.push(`${filePath} item ${label}: "img" must start with /terrazzo/assets/events/`);
+      if (!item.img.startsWith('assets/events/')) {
+        errors.push(`${filePath} item ${label}: "img" must start with assets/events/`);
       } else {
         validateReferencedAssetExists(item.img, filePath, label, 'img', errors);
       }
@@ -177,8 +177,8 @@ function validateGallery(items, filePath, errors) {
     if (!isNonEmptyString(item.src)) {
       errors.push(`${filePath} item ${label}: "src" must be a non-empty string`);
     } else {
-      if (!item.src.startsWith('/terrazzo/assets/gallery/')) {
-        errors.push(`${filePath} item ${label}: "src" must start with /terrazzo/assets/gallery/`);
+      if (!item.src.startsWith('assets/gallery/')) {
+        errors.push(`${filePath} item ${label}: "src" must start with assets/gallery/`);
       } else {
         validateReferencedAssetExists(item.src, filePath, label, 'src', errors);
       }
@@ -220,11 +220,11 @@ function validateNonEmptyStringField(item, field, filePath, label, errors) {
 }
 
 function validateReferencedAssetExists(assetPath, filePath, label, field, errors) {
-  const repoRelativePath = assetPath.slice(siteBasePath.length);
+  const repoRelativePath = assetPath;
   const fullPath = path.join(repoRoot, repoRelativePath);
 
-  if (!assetPath.startsWith(siteBasePath) || repoRelativePath.startsWith('..') || path.isAbsolute(repoRelativePath)) {
-    errors.push(`${filePath} item ${label}: "${field}" must be a /terrazzo/ repo asset path`);
+  if (!assetPath.startsWith(siteBasePath) || repoRelativePath.split('/').includes('..') || path.isAbsolute(repoRelativePath)) {
+    errors.push(`${filePath} item ${label}: "${field}" must be a relative assets/ repo path`);
     return;
   }
 
