@@ -1,0 +1,34 @@
+<button id="cartFab" class="cart-fab" type="button" aria-controls="cartDrawer"
+  [style.visibility]="open() ? 'hidden' : null" (click)="show()">
+  🛒 Carrito <span id="cartCount" class="cart-count-badge">{{ cart.count() }}</span>
+</button>
+<div #drawer class="offcanvas offcanvas-end offcanvas-terrazzo" tabindex="-1" id="cartDrawer" aria-labelledby="cartDrawerLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="cartDrawerLabel">Tu pedido</h5>
+    <button type="button" class="btn-close btn-close-white" (click)="hide()" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body d-flex flex-column">
+    <div id="cartLines" class="mb-3">
+      @for (item of cart.items(); track item.id) {
+        <div class="cart-line">
+          <div>
+            <div class="cart-line-title">{{ item.name }}</div>
+            <div class="text-muted small">{{ currency(item.price) }} c/u</div>
+          </div>
+          <div class="cart-qty-wrap">
+            <button class="qty-btn btn-dec" (click)="cart.updateQuantity(item.id, item.qty - 1)" aria-label="Disminuir cantidad">−</button>
+            <input class="form-control form-control-sm text-center" style="width:3.25rem" type="number" min="1"
+              [value]="item.qty" (change)="quantity(item.id, $event)" [attr.aria-label]="'Cantidad de ' + item.name">
+            <button class="qty-btn btn-inc" (click)="cart.updateQuantity(item.id, item.qty + 1)" aria-label="Aumentar cantidad">+</button>
+            <button class="btn btn-sm btn-outline-light ms-2 btn-remove" (click)="cart.remove(item.id)">Quitar</button>
+          </div>
+        </div>
+      } @empty { <p class="text-muted mb-0">Tu carrito está vacío.</p> }
+    </div>
+    <div class="mt-auto">
+      <div class="cart-total-row mb-3"><span>Total</span><span id="cartTotal">{{ currency(cart.total()) }}</span></div>
+      <button id="checkoutBtn" class="cart-checkout-btn" (click)="checkout()">Enviar pedido por WhatsApp</button>
+      <p class="text-muted small mt-2 mb-0">Se abrirá WhatsApp con tu pedido. El total final y la transferencia se confirman por chat.</p>
+    </div>
+  </div>
+</div>

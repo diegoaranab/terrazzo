@@ -1,16 +1,34 @@
 # Terrazzo
 
-Static MVP website for Terrazzo Urban Food & Drinks in Tehuacán, Puebla, served directly from GitHub Pages.
+Angular 22 standalone storefront for Terrazzo Urban Food & Drinks in Tehuacán, Puebla, built for GitHub Pages.
 
 ## Development
 
-Install the project tooling:
+Use Node 24 LTS (24.15.0 or newer in the 24.x line; `.nvmrc` pins the tested runtime). Install dependencies and start the development server:
 
 ```bash
-npm install
+nvm use
+npm ci
+npm start
 ```
 
-This project does not use a frontend build step. Site files are served directly from the repository, and optimized assets under `assets/` are committed because GitHub Pages serves them directly.
+Open `http://localhost:4200/`. JSON and media use relative `assets/...` URLs, resolved against the document base in local development and production. Keep optimized assets under `assets/` committed; Angular copies them into the static build without moving or re-encoding the originals.
+
+```bash
+npm run test:ci   # Angular/Vitest unit tests, non-watch
+npm test          # watch mode
+npm run build     # production output: dist/terrazzo/browser
+```
+
+Production builds use `<base href="/terrazzo/">`. The single-page storefront does not need a router. Feature components live in `src/app/features/`; typed JSON loading, cart state and order generation live in `src/app/core/`. Bootstrap 5, Flickity 2 and GLightbox remain package-managed for functional parity. A scoped `@angular/build` override selects the Vite 8.3.5 security patch; recheck that override when updating Angular tooling.
+
+## GitHub Pages
+
+`.github/workflows/deploy-pages.yml` builds on pushes to `main` (or manual dispatch) and uploads **only** `dist/terrazzo/browser` using the official Pages Actions flow. The deployment uses the `github-pages` environment.
+
+**One-time repository-owner step:** in Settings → Pages → Build and deployment → Source, select **GitHub Actions** instead of branch publishing. Do this when reviewing/merging the Angular migration; source files alone no longer constitute the deployable site. No repository settings are changed by this code.
+
+The pull-request validation workflow installs dependencies, validates content, checks the image optimizer CLI, runs unit tests and builds production. Generated `dist/` and Angular caches are ignored.
 
 ## Image Optimization
 
@@ -64,7 +82,7 @@ Archivos actuales de contenido:
 - `assets/events.json`: tarjetas de Eventos & Deportes.
 - `assets/gallery.json`: imágenes de la galería.
 
-Importante para GitHub Pages: las rutas de imágenes deben conservar el prefijo `/terrazzo/...`. Por ejemplo: `/terrazzo/assets/gallery/foto.webp`.
+Importante para GitHub Pages: las rutas de imágenes deben ser relativas y comenzar con `assets/`. Por ejemplo: `assets/gallery/foto.webp`. El build configura `/terrazzo/` como base de producción.
 
 ### Validación de Contenido
 
@@ -78,7 +96,7 @@ El script revisa campos requeridos, IDs duplicados, categorías válidas del men
 
 Las imágenes PNG del menú actualmente generan advertencias solamente y no bloquean la validación.
 
-Pull requests ejecutan un workflow de GitHub Actions que corre esta validación de contenido y confirma que el CLI del optimizador de imágenes esté disponible. Si falla, corregir el JSON o las rutas de contenido antes de hacer merge.
+Pull requests ejecutan un workflow de GitHub Actions que corre esta validación de contenido, confirma que el CLI del optimizador de imágenes esté disponible y ejecuta las pruebas y el build de Angular. Si falla, corregir el JSON o las rutas de contenido antes de hacer merge.
 
 ### Menú
 
@@ -89,7 +107,7 @@ Cada elemento de `assets/menu.json` representa un producto del menú:
 - `name`: nombre visible del producto.
 - `description`: descripción breve que aparece en la tarjeta del producto.
 - `price`: precio numérico, sin símbolo de pesos.
-- `img`: ruta de la imagen del producto. Debe mantener el prefijo `/terrazzo/...`.
+- `img`: ruta de la imagen del producto. Debe comenzar con `assets/`.
 
 Categorías válidas actuales:
 
@@ -99,9 +117,9 @@ Categorías válidas actuales:
 - `nachos`
 - `cocteleria`
 
-Si se agrega una categoría nueva en `assets/menu.json`, también se deben actualizar los botones de filtro en `index.html` para que la nueva categoría pueda seleccionarse en el sitio.
+Si se agrega una categoría nueva en `assets/menu.json`, también se deben actualizar los botones de filtro en `src/app/features/menu/menu.ts` para que la nueva categoría pueda seleccionarse en el sitio.
 
-Nota: actualmente varias imágenes del menú todavía viven como PNG directamente bajo `assets/`. Si se optimizan o reemplazan en el futuro, preferir WebP y una ruta más organizada como `/terrazzo/assets/menu/alitas-buffalo.webp`.
+Nota: actualmente varias imágenes del menú todavía viven como PNG directamente bajo `assets/`. Si se optimizan o reemplazan en el futuro, preferir WebP y una ruta más organizada como `assets/menu/alitas-buffalo.webp`.
 
 Ejemplo:
 
@@ -112,7 +130,7 @@ Ejemplo:
     "name": "Buffalo",
     "description": "Clásica salsa búfalo con mantequilla",
     "price": 105,
-    "img": "/terrazzo/assets/menu/alitas-buffalo.webp"
+    "img": "assets/menu/alitas-buffalo.webp"
 }
 ```
 
@@ -124,7 +142,7 @@ Cada elemento de `assets/events.json` representa una tarjeta de Eventos & Deport
 - `title`: título visible de la tarjeta.
 - `date`: fecha, horario o etiqueta de recurrencia.
 - `description`: texto breve que explica el evento, promo o transmisión.
-- `img`: ruta de la imagen del evento. Debe mantener el prefijo `/terrazzo/...`.
+- `img`: ruta de la imagen del evento. Debe comenzar con `assets/`.
 
 En el MVP, estas tarjetas pueden mezclar eventos próximos, promociones recurrentes o ejemplos de eventos pasados. Esto ayuda a mostrar el tipo de experiencia que Terrazzo ofrece aunque no todos los eventos sean fechas futuras.
 
@@ -136,7 +154,7 @@ Ejemplo:
     "title": "Partidos en vivo",
     "date": "Días de juego · desde 13:00 h",
     "description": "Transmisiones deportivas, finales y partidos especiales con pantalla, comida, drinks y promos durante el juego.",
-    "img": "/terrazzo/assets/events/transmisiones-deportivas.webp"
+    "img": "assets/events/transmisiones-deportivas.webp"
 }
 ```
 
@@ -145,7 +163,7 @@ Ejemplo:
 Cada elemento de `assets/gallery.json` representa una imagen de la galería:
 
 - `id`: identificador único de la imagen.
-- `src`: ruta de la imagen. Debe mantener el prefijo `/terrazzo/...`.
+- `src`: ruta de la imagen. Debe comenzar con `assets/`.
 - `alt`: texto alternativo para accesibilidad y carga fallida de imágenes.
 
 El texto `alt` debe describir claramente lo que se ve en la imagen, por ejemplo `Mesa con burgers dentro de Terrazzo` en lugar de `foto 1`.
@@ -155,7 +173,7 @@ Ejemplo:
 ```json
 {
     "id": "interior-burgers-table",
-    "src": "/terrazzo/assets/gallery/interior-burgers-table.webp",
+    "src": "assets/gallery/interior-burgers-table.webp",
     "alt": "Mesa con burgers dentro de Terrazzo"
 }
 ```
@@ -182,7 +200,7 @@ npm run optimize:images
 ```
 
 4. Confirmar que los archivos optimizados quedaron bajo `assets/`.
-5. Actualizar el JSON correspondiente con la ruta `/terrazzo/assets/...`.
+5. Actualizar el JSON correspondiente con la ruta `assets/...`.
 6. Committear los archivos WebP optimizados bajo `assets/`.
 
 No committear `_incoming/`: esa carpeta está ignorada por Git porque contiene imágenes originales pesadas que GitHub Pages no necesita.

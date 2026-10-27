@@ -4,3 +4,9 @@ _raw/
 _exports/
 .DS_Store
 *.log
+
+# Angular output and tooling
+/dist/
+/.angular/
+/coverage/
+/out-tsc/
