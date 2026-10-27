@@ -2,6 +2,17 @@
 
 _Last updated: 2026-10-27_
 
+## Current execution status
+
+- ✅ PR #22 — Angular 22 storefront migration merged on 2026-10-27.
+- ✅ Main merge commit: `ba5e834ff568d5be9daff95faf47d6ebeaebd601`.
+- ✅ Validate Storefront workflow passed on `main`.
+- ✅ Angular GitHub Pages build + deployment passed after switching Pages Source to GitHub Actions.
+- ✅ GitHub Pages deployment reported success for `https://diegoaranab.github.io/terrazzo/`.
+- ➡️ Next: PR #23 — Content and performance refresh.
+- Follow-up debt for PR #23: upgrade Sharp from 0.34.3 to a patched current release before any future untrusted upload workflow.
+
+
 ## Purpose
 
 Terrazzo is the first client and validation environment for a future SaaS platform aimed at independent and small-to-medium restaurants in Mexico. The product should evolve from a branded digital storefront into a practical sales and operations layer that gives restaurant owners control over their content, orders, payments, analytics, integrations, and eventually AI-assisted business insights.
@@ -47,7 +58,7 @@ The reactivation baseline was commit `9a5dd6ee56bf2c0a01e5eba4a7716bcca6cbb2cc`.
 
 # Reactivation Track — Demo-ready storefront
 
-## PR #22 — Angular 22 storefront migration
+## PR #22 — Angular 22 storefront migration ✅ MERGED
 
 **Goal:** migrate the existing storefront from static vanilla JavaScript to the latest stable Angular 22.x while preserving visible content and functional behavior.
 
